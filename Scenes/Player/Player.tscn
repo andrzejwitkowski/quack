@@ -1,0 +1,64 @@
+[gd_scene load_steps=15 format=3 uid="uid://b5ffpqm7j6bft"]
+
+[ext_resource type="Script" uid="uid://b4c8ggnxsft6i" path="res://Scenes/Player/Player.gd" id="1_ft8w5"]
+[ext_resource type="AudioStream" uid="uid://bv0sbfn8iiyqi" path="res://Assets/Sounds/concrete-footsteps-6752.wav" id="2_4wape"]
+[ext_resource type="AudioStream" uid="uid://dhnynijj3jblg" path="res://Assets/Sounds/528732__landing1.wav" id="2_jmcll"]
+[ext_resource type="AudioStream" uid="uid://c7jd82oiu4jvw" path="res://Assets/Sounds/528732__landing2.wav" id="3_4wape"]
+[ext_resource type="AudioStream" uid="uid://ddd8gdrxujwoo" path="res://Assets/Sounds/528732__landing3.wav" id="4_t26db"]
+[ext_resource type="AudioStream" uid="uid://cua2u8u30qvsb" path="res://Assets/Sounds/515623__PlayerHurt2.wav" id="6_t26db"]
+[ext_resource type="PackedScene" uid="uid://cwptpjsaldb32" path="res://Scenes/Utils/HitBox/HitBox.tscn" id="13_epg6k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t26db"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fk5o5"]
+streams_count = 3
+stream_0/stream = ExtResource("2_jmcll")
+stream_1/stream = ExtResource("3_4wape")
+stream_2/stream = ExtResource("4_t26db")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_825xp"]
+streams_count = 2
+stream_0/stream = ExtResource("6_t26db")
+stream_1/stream = ExtResource("6_t26db")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t26db"]
+albedo_color = Color(0.9019608, 0.21176471, 0.30588236, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t26db"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fk5o5"]
+albedo_color = Color(0.3372549, 0.38431373, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fk5o5"]
+radius = 0.1
+height = 1.0
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 33
+script = ExtResource("1_ft8w5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_t26db")
+
+[node name="WalkingSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_4wape")
+
+[node name="LandingSound" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_fk5o5")
+
+[node name="Pains" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_825xp")
+
+[node name="HitBox" parent="." instance=ExtResource("13_epg6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.054563105, 0)
+collision_layer = 16
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_t26db")
+mesh = SubResource("CapsuleMesh_t26db")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.37474072, -0.5866206)
+material_override = SubResource("StandardMaterial3D_fk5o5")
+mesh = SubResource("CapsuleMesh_fk5o5")

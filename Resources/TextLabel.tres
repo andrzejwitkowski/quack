@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dc0qbjbt85100"]
+
+[ext_resource type="FontFile" uid="uid://crhkbsfsdn0fo" path="res://Assets/Fonts/NovaSquare-Regular.ttf" id="1_or8ax"]
+
+[resource]
+font = ExtResource("1_or8ax")
+font_size = 18
+outline_size = 10
+outline_color = Color(0.056291588, 0.056291603, 0.056291595, 1)

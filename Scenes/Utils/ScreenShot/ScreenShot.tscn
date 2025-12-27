@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn4dq4s0cep0x"]
+
+[ext_resource type="Script" uid="uid://5s02g0116nni" path="res://Scenes/Utils/ScreenShot/ScreenShot.gd" id="1_dopau"]
+
+[node name="ScreenShot" type="Node3D"]
+script = ExtResource("1_dopau")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StatsLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
