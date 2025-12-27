@@ -23,19 +23,21 @@ const _469567__PLAYER_DIE = preload("res://assets/Sounds/469567__PlayerDie.wav")
 @onready var landing_sound: AudioStreamPlayer3D = $LandingSound
 @onready var pains: AudioStreamPlayer3D = $Pains
 @onready var hit_box: HitBox = $HitBox
+@onready var camera_3d: Node3D = $Camera3D
 
 
 var _was_moving: bool = false
 var _was_on_floor: bool = false
-
+var _look_delta: Vector2 = Vector2.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
-	pass
+	if event is InputEventMouseMotion:
+		_look_delta = event.relative
 		
 
 #region Setup
 func _ready() -> void:
-	pass
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _enter_tree() -> void:
@@ -45,6 +47,11 @@ func _enter_tree() -> void:
 
 #region Movement
 func _physics_process(delta: float) -> void:
+	
+	rotate_y(-_look_delta.x * sensitivity)
+	camera_3d.rotate_x(-_look_delta.y * sensitivity)
+	camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(-50), deg_to_rad(50))
+	_look_delta = Vector2.ZERO
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
