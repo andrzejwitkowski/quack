@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://de8gyhklyse2l"]
+[gd_scene load_steps=16 format=3 uid="uid://de8gyhklyse2l"]
 
 [ext_resource type="Texture2D" uid="uid://faff1yhahtjk" path="res://Assets/Textures/PrototypeTextures/dark.png" id="1_lsk1p"]
 [ext_resource type="Texture2D" uid="uid://c4vp7eulu0e7t" path="res://Assets/Textures/PrototypeTextures/water.png" id="2_k50av"]
@@ -43,6 +43,10 @@ size = Vector3(6, 3, 6)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mosbd"]
 points = PackedVector3Array(-3, -1.5, -3, -3, 1.5, -3, 3, -1.5, -3, -3, -1.5, 3, -3, 1.5, 3, 3, 1.5, -3, 3, -1.5, 3, 3, 1.5, 3)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sw2t2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mosbd"]
 
 [node name="Setup" type="Node"]
 
@@ -194,3 +198,14 @@ transform = Transform3D(0.5962611, -0.53349507, 0.5998798, 0, 0.74724317, 0.6645
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8743734, 22.025028)
 
 [node name="ScreenShot" parent="." instance=ExtResource("4_sw2t2")]
+
+[node name="TestBunny" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7124214, 3.5249958, 8.774765)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBunny"]
+shape = SubResource("CapsuleShape3D_sw2t2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestBunny"]
+mesh = SubResource("CapsuleMesh_mosbd")

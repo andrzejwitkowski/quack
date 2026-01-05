@@ -24,24 +24,30 @@ const _469567__PLAYER_DIE = preload("res://assets/Sounds/469567__PlayerDie.wav")
 @onready var pains: AudioStreamPlayer3D = $Pains
 @onready var hit_box: HitBox = $HitBox
 @onready var camera_3d: Node3D = $Camera3D
+@onready var pistol: WeaponBase = $Camera3D/GunHolder/Pistol
 
 
 var _was_moving: bool = false
 var _was_on_floor: bool = false
 var _look_delta: Vector2 = Vector2.ZERO
+var _current_weapon: WeaponBase = null
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_look_delta = event.relative
 		
+	if event.is_action_pressed("shoot") and _current_weapon:
+		_current_weapon.fire()
+		
 
 #region Setup
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
+	_current_weapon = pistol
 
 func _enter_tree() -> void:
 	add_to_group(GROUP_NAME)
+
 #endregion
 
 

@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://djkgdkjhd0nvc"]
+[gd_scene load_steps=3 format=3 uid="uid://djkgdkjhd0nvc"]
 
 [ext_resource type="Script" uid="uid://c5wlde7gr0vlf" path="res://Scenes/Weapons/WeaponBase.gd" id="1_vafft"]
+[ext_resource type="PackedScene" uid="uid://dwtr6c4eb5yn8" path="res://Scenes/Vfx/MuzzleFlash.tscn" id="2_nait1"]
 
 [node name="WeaponBase" type="Node3D"]
 script = ExtResource("1_vafft")
+
+[node name="Muzzle" type="Node3D" parent="."]
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="."]
+
+[node name="MuzzleFlash" parent="." instance=ExtResource("2_nait1")]

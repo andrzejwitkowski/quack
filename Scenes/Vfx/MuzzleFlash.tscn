@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwtr6c4eb5yn8"]
+
+[ext_resource type="Texture2D" uid="uid://bed4mpd0g3bty" path="res://Assets/Textures/Dot.png" id="1_mwafv"]
+
+[sub_resource type="Curve" id="Curve_mwafv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15151516, 1), 0.0, 0.0, 0, 0, Vector2(0.8712122, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_c85lx"]
+curve = SubResource("Curve_mwafv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c85lx"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.39999998
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_c85lx")
+color = Color(5, 2, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jeedk"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_mwafv")
+
+[sub_resource type="QuadMesh" id="QuadMesh_a2p0a"]
+material = SubResource("StandardMaterial3D_jeedk")
+
+[node name="MuzzleFlash" type="GPUParticles3D"]
+emitting = false
+amount = 1
+lifetime = 0.14
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_c85lx")
+draw_pass_1 = SubResource("QuadMesh_a2p0a")

@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3gq82o34gqbo"]
+
+[ext_resource type="Texture2D" uid="uid://c5420qjprcxae" path="res://Assets/Images/Crosshair.png" id="1_1md71"]
+[ext_resource type="Script" uid="uid://cloodiregihh3" path="res://Scenes/PlayerUi/PlayerUi.gd" id="1_bvlqs"]
+[ext_resource type="Texture2D" uid="uid://bed4mpd0g3bty" path="res://Assets/Textures/Dot.png" id="2_fg5ye"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fg5ye"]
+particle_flag_disable_z = true
+radial_velocity_min = 19.999977
+radial_velocity_max = 49.999977
+gravity = Vector3(0, 15, 0)
+scale_min = 0.02
+scale_max = 0.04
+color = Color(3.1229057, 0.46505314, 0.59499264, 1)
+
+[node name="PlayerUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_bvlqs")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1md71")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+texture = ExtResource("2_fg5ye")
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.76
+process_material = SubResource("ParticleProcessMaterial_fg5ye")
