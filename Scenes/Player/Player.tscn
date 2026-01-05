@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5ffpqm7j6bft"]
+[gd_scene load_steps=16 format=3 uid="uid://b5ffpqm7j6bft"]
 
 [ext_resource type="Script" uid="uid://b4c8ggnxsft6i" path="res://Scenes/Player/Player.gd" id="1_ft8w5"]
 [ext_resource type="AudioStream" uid="uid://bv0sbfn8iiyqi" path="res://Assets/Sounds/concrete-footsteps-6752.wav" id="2_4wape"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cua2u8u30qvsb" path="res://Assets/Sounds/515623__PlayerHurt2.wav" id="6_t26db"]
 [ext_resource type="PackedScene" uid="uid://delrgscou4hww" path="res://Scenes/Weapons/Weapons/Pistol.tscn" id="8_fk5o5"]
 [ext_resource type="PackedScene" uid="uid://d3gq82o34gqbo" path="res://Scenes/PlayerUi/PlayerUi.tscn" id="9_825xp"]
+[ext_resource type="PackedScene" uid="uid://ccgqhgt1c765x" path="res://Scenes/Weapons/Weapons/RocketLauncher.tscn" id="9_ji083"]
 [ext_resource type="PackedScene" uid="uid://cwptpjsaldb32" path="res://Scenes/Utils/HitBox/HitBox.tscn" id="13_epg6k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t26db"]
@@ -62,6 +63,10 @@ current = true
 
 [node name="Pistol" parent="Camera3D/GunHolder" instance=ExtResource("8_fk5o5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.282, -0.288)
+visible = false
+
+[node name="RocketLauncher" parent="Camera3D/GunHolder" instance=ExtResource("9_ji083")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.237, -0.237)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

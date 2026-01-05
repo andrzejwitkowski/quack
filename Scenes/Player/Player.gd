@@ -25,6 +25,7 @@ const _469567__PLAYER_DIE = preload("res://assets/Sounds/469567__PlayerDie.wav")
 @onready var hit_box: HitBox = $HitBox
 @onready var camera_3d: Node3D = $Camera3D
 @onready var pistol: WeaponBase = $Camera3D/GunHolder/Pistol
+@onready var rocket_launcher: WeaponBase = $Camera3D/GunHolder/RocketLauncher
 
 
 var _was_moving: bool = false
@@ -43,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 #region Setup
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	_current_weapon = pistol
+	_current_weapon = rocket_launcher
 
 func _enter_tree() -> void:
 	add_to_group(GROUP_NAME)
