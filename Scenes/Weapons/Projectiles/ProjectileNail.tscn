@@ -1,0 +1,39 @@
+[gd_scene load_steps=10 format=3 uid="uid://bvvhlfddc2j61"]
+
+[ext_resource type="PackedScene" uid="uid://bvoyyw4j1yri3" path="res://Scenes/Weapons/Projectiles/ProjectileBase.tscn" id="1_mnlsk"]
+[ext_resource type="AudioStream" uid="uid://degbrrdf54hrr" path="res://Assets/Sounds/708156__nail_impact_1.wav" id="2_bovbo"]
+[ext_resource type="AudioStream" uid="uid://drx2tojxirv8e" path="res://Assets/Sounds/708156__nail_impact_2.wav" id="3_vw05m"]
+[ext_resource type="AudioStream" uid="uid://fb13seim36y" path="res://Assets/Sounds/708156__nail_impact_3.wav" id="4_lj8u5"]
+[ext_resource type="AudioStream" uid="uid://becevkwwebo0s" path="res://Assets/Sounds/708156__nail_impact_4.wav" id="5_02j6p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mnlsk"]
+custom_solver_bias = 1.0
+size = Vector3(0.119702145, 0.11079101, 0.30854493)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s44lc"]
+streams_count = 4
+stream_0/stream = ExtResource("2_bovbo")
+stream_1/stream = ExtResource("3_vw05m")
+stream_2/stream = ExtResource("4_lj8u5")
+stream_3/stream = ExtResource("5_02j6p")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bovbo"]
+albedo_color = Color(0.10980392, 0.34117648, 0.69803923, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_vw05m"]
+material = SubResource("StandardMaterial3D_bovbo")
+size = Vector3(0.1, 0.3, 0.1)
+
+[node name="ProjectileNail" instance=ExtResource("1_mnlsk")]
+collision_layer = 193
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00076904893, -0.001196295, -0.0005126856)
+shape = SubResource("BoxShape3D_mnlsk")
+
+[node name="HitSound" parent="." index="2"]
+stream = SubResource("AudioStreamRandomizer_s44lc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_vw05m")

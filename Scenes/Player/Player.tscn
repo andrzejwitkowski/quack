@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b5ffpqm7j6bft"]
+[gd_scene load_steps=18 format=3 uid="uid://b5ffpqm7j6bft"]
 
 [ext_resource type="Script" uid="uid://b4c8ggnxsft6i" path="res://Scenes/Player/Player.gd" id="1_ft8w5"]
 [ext_resource type="AudioStream" uid="uid://bv0sbfn8iiyqi" path="res://Assets/Sounds/concrete-footsteps-6752.wav" id="2_4wape"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://delrgscou4hww" path="res://Scenes/Weapons/Weapons/Pistol.tscn" id="8_fk5o5"]
 [ext_resource type="PackedScene" uid="uid://d3gq82o34gqbo" path="res://Scenes/PlayerUi/PlayerUi.tscn" id="9_825xp"]
 [ext_resource type="PackedScene" uid="uid://ccgqhgt1c765x" path="res://Scenes/Weapons/Weapons/RocketLauncher.tscn" id="9_ji083"]
+[ext_resource type="PackedScene" uid="uid://b820togppev32" path="res://Scenes/Weapons/Weapons/NailGun.tscn" id="10_0kmp4"]
+[ext_resource type="PackedScene" uid="uid://cyec0s37kycvg" path="res://Scenes/Weapons/Weapons/GrenadeLuncher.tscn" id="11_i5acl"]
 [ext_resource type="PackedScene" uid="uid://cwptpjsaldb32" path="res://Scenes/Utils/HitBox/HitBox.tscn" id="13_epg6k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t26db"]
@@ -67,6 +69,14 @@ visible = false
 
 [node name="RocketLauncher" parent="Camera3D/GunHolder" instance=ExtResource("9_ji083")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.237, -0.237)
+visible = false
+
+[node name="NailGun" parent="Camera3D/GunHolder" instance=ExtResource("10_0kmp4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.282, -0.282)
+visible = false
+
+[node name="GrenadeLuncher" parent="Camera3D/GunHolder" instance=ExtResource("11_i5acl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.366542, -0.26014495)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
