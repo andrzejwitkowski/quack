@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://djkgdkjhd0nvc" path="res://Scenes/Weapons/WeaponBase.tscn" id="1_gutyp"]
 [ext_resource type="AudioStream" uid="uid://cvnjyybulu5fx" path="res://Assets/Sounds/212606__nail.wav" id="2_r40ec"]
-[ext_resource type="PackedScene" uid="uid://bvvhlfddc2j61" path="res://Scenes/Weapons/Projectiles/ProjectileNail.tscn" id="2_yc45x"]
+[ext_resource type="PackedScene" uid="uid://bvvhlfddc2j61" path="res://Scenes/Projectiles/ProjectileNail.tscn" id="2_yc45x"]
 [ext_resource type="Script" uid="uid://c3b8s7vw8t4m3" path="res://Scenes/Weapons/Behavior/ProjectileFire.gd" id="3_5wlqr"]
 
 [sub_resource type="Resource" id="Resource_vbubv"]

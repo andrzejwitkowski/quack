@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=4 uid="uid://ccgqhgt1c765x"]
 
 [ext_resource type="PackedScene" uid="uid://djkgdkjhd0nvc" path="res://Scenes/Weapons/WeaponBase.tscn" id="1_ubc3v"]
-[ext_resource type="PackedScene" uid="uid://cykd8nwq44wi8" path="res://Scenes/Weapons/Projectiles/ProjectileRocket.tscn" id="2_btrjx"]
+[ext_resource type="PackedScene" uid="uid://cykd8nwq44wi8" path="res://Scenes/Projectiles/ProjectileRocket.tscn" id="2_btrjx"]
 [ext_resource type="Script" uid="uid://c3b8s7vw8t4m3" path="res://Scenes/Weapons/Behavior/ProjectileFire.gd" id="2_e7v2w"]
 [ext_resource type="AudioStream" uid="uid://cv4hdq47nbc8k" path="res://Assets/Sounds/685916_whoosh.wav" id="4_y6so7"]
 

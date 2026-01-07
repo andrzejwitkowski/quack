@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=4 uid="uid://cykd8nwq44wi8"]
 
-[ext_resource type="PackedScene" uid="uid://bvoyyw4j1yri3" path="res://Scenes/Weapons/Projectiles/ProjectileBase.tscn" id="1_3inxg"]
+[ext_resource type="PackedScene" uid="uid://bvoyyw4j1yri3" path="res://Scenes/Projectiles/ProjectileBase.tscn" id="1_3inxg"]
 [ext_resource type="AudioStream" uid="uid://v65b8duoyk8n" path="res://Assets/Sounds/252198__pepingrillin__rocket_impact_short.wav" id="2_yx7rn"]
 [ext_resource type="PackedScene" uid="uid://bb5edqg8vh8ck" path="res://Scenes/Vfx/RocketTrail.tscn" id="3_xwpc2"]
 
@@ -135,6 +135,7 @@ shadow_mesh = SubResource("ArrayMesh_eeo8w")
 
 [node name="ProjectileRocket" instance=ExtResource("1_3inxg")]
 collision_layer = 193
+impact_pool_object = 2
 
 [node name="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 9.151009e-10, -0.020935059)

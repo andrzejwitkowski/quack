@@ -2,6 +2,8 @@ extends RigidBody3D
 
 class_name ThrowableBase
 
+@export var impact_pool_object: GameUtils.PoolObjectNames = GameUtils.PoolObjectNames.None
+
 @onready var land_effect: AudioStreamPlayer3D = $LandEffect
 @onready var damage_area: Area3D = $DamageArea
 @onready var instant_explode: Area3D = $InstantExplode
@@ -36,6 +38,7 @@ func init(p_impulse: float, p_angular: Vector3,
 	_physics_collision_mask = physics_collision_mask
 
 func blow_up() -> void:
+	ObjectPool.activate(impact_pool_object, global_position)
 	GameUtils.toggle_area3d(damage_area, true, true)
 	GameUtils.vanish_rigidbody(self)
 	await get_tree().physics_frame

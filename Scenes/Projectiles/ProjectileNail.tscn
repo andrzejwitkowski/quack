@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bvvhlfddc2j61"]
 
-[ext_resource type="PackedScene" uid="uid://bvoyyw4j1yri3" path="res://Scenes/Weapons/Projectiles/ProjectileBase.tscn" id="1_mnlsk"]
+[ext_resource type="PackedScene" uid="uid://bvoyyw4j1yri3" path="res://Scenes/Projectiles/ProjectileBase.tscn" id="1_mnlsk"]
 [ext_resource type="AudioStream" uid="uid://degbrrdf54hrr" path="res://Assets/Sounds/708156__nail_impact_1.wav" id="2_bovbo"]
 [ext_resource type="AudioStream" uid="uid://drx2tojxirv8e" path="res://Assets/Sounds/708156__nail_impact_2.wav" id="3_vw05m"]
 [ext_resource type="AudioStream" uid="uid://fb13seim36y" path="res://Assets/Sounds/708156__nail_impact_3.wav" id="4_lj8u5"]

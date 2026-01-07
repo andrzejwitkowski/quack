@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://de8gyhklyse2l"]
+[gd_scene load_steps=18 format=3 uid="uid://de8gyhklyse2l"]
 
 [ext_resource type="Texture2D" uid="uid://faff1yhahtjk" path="res://Assets/Textures/PrototypeTextures/dark.png" id="1_lsk1p"]
+[ext_resource type="Script" uid="uid://b45mdyfi01ulu" path="res://Scenes/Setup/Setup.gd" id="1_mosbd"]
 [ext_resource type="Texture2D" uid="uid://c4vp7eulu0e7t" path="res://Assets/Textures/PrototypeTextures/water.png" id="2_k50av"]
 [ext_resource type="PackedScene" uid="uid://b5ffpqm7j6bft" path="res://Scenes/Player/Player.tscn" id="3_0ccqp"]
 [ext_resource type="PackedScene" uid="uid://dn4dq4s0cep0x" path="res://Scenes/Utils/ScreenShot/ScreenShot.tscn" id="4_sw2t2"]
+[ext_resource type="PackedScene" uid="uid://b5bmyoy4y3f8c" path="res://Scenes/PoolContainer/PoolContainer.tscn" id="6_14hjg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ccqp"]
 sky_top_color = Color(0.2617225, 0.31775224, 0.39240915, 1)
@@ -49,6 +51,7 @@ points = PackedVector3Array(-3, -1.5, -3, -3, 1.5, -3, 3, -1.5, -3, -3, -1.5, 3,
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mosbd"]
 
 [node name="Setup" type="Node"]
+script = ExtResource("1_mosbd")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mosbd")
@@ -209,3 +212,7 @@ shape = SubResource("CapsuleShape3D_sw2t2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestBunny"]
 mesh = SubResource("CapsuleMesh_mosbd")
+
+[node name="Container" type="Node3D" parent="."]
+
+[node name="PoolContainer" parent="." instance=ExtResource("6_14hjg")]

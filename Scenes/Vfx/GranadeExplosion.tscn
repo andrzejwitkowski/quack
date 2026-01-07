@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://bu4cmrfvnorol"]
+
+[ext_resource type="Texture2D" uid="uid://bed4mpd0g3bty" path="res://Assets/Textures/Dot.png" id="1_ii0bc"]
+[ext_resource type="Script" uid="uid://cr61lmatdh3dg" path="res://Scenes/Vfx/GranadeExplosion.gd" id="1_uxgw0"]
+[ext_resource type="AudioStream" uid="uid://brgy6smxremcm" path="res://Assets/Sounds/172334__knova__grenade_knova.wav" id="2_uxgw0"]
+
+[sub_resource type="Gradient" id="Gradient_ii0bc"]
+offsets = PackedFloat32Array(0.0397351, 0.95364237)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uxgw0"]
+gradient = SubResource("Gradient_ii0bc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_twd1e"]
+radial_velocity_min = 3.9999776
+radial_velocity_max = 5.9999776
+gravity = Vector3(0, -2, 0)
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_uxgw0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_log7i"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.79607844, 0.58431375, 0.16862746, 1)
+albedo_texture = ExtResource("1_ii0bc")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_qoetr"]
+material = SubResource("StandardMaterial3D_log7i")
+
+[node name="GranadeExplosion" type="Node3D"]
+script = ExtResource("1_uxgw0")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 128
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.88
+process_material = SubResource("ParticleProcessMaterial_twd1e")
+draw_pass_1 = SubResource("QuadMesh_qoetr")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_uxgw0")
+
+[connection signal="finished" from="GPUParticles3D" to="." method="_on_gpu_particles_3d_finished"]
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

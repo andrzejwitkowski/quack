@@ -2,6 +2,7 @@ extends Area3D
 
 class_name ProjectileBase
 
+@export var impact_pool_object: GameUtils.PoolObjectNames = GameUtils.PoolObjectNames.None
 @onready var hit_sound: AudioStreamPlayer3D = $HitSound
 
 var _damage = 0
@@ -17,6 +18,8 @@ func _physics_process(delta: float) -> void:
 	
 
 func blow_up() -> void:
+	if GameUtils.ValidPoolObject(impact_pool_object):
+		ObjectPool.activate(impact_pool_object, global_position)
 	GameUtils.toggle_area3d(self, false, false)
 	hide()
 	set_physics_process(false)
