@@ -20,5 +20,6 @@ func fire(parent: Node3D, muzzle_trfm: Transform3D) -> void:
 	var hit: Dictionary = space.intersect_ray(ray_cast_params)
 	if hit:
 		var collider = hit.collider
-		SignalHub.emit_on_hitscan_hit()
-		print("Ray collided with %s at %s" % [collider.name, hit.position])
+		if collider is HitBox and !collider.get_dead():
+			SignalHub.emit_on_hitscan_hit()
+			collider.take_hit(damage)

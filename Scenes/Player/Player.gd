@@ -34,6 +34,8 @@ var _was_moving: bool = false
 var _was_on_floor: bool = false
 var _look_delta: Vector2 = Vector2.ZERO
 var _current_weapon: WeaponBase = null
+var _collected_weapons: Array[WeaponBase] = []
+var _current_weapon_index = 0
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -42,11 +44,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and _current_weapon:
 		_current_weapon.fire()
 		
+	if event.is_action_pressed("next_weapon"):
+		switch_weapon(1)
+	if event.is_action_pressed("prev_weapon"):
+		switch_weapon(-1)
+		
 
 #region Setup
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	_current_weapon = grenade_luncher
+	
+	_collected_weapons.append(pistol)
+	_collected_weapons.append(rocket_launcher)
+	_collected_weapons.append(grenade_luncher)
+	_collected_weapons.append(nail_gun)
+	
+	await get_tree().process_frame
+	set_current_weapon(0)
 
 func _enter_tree() -> void:
 	add_to_group(GROUP_NAME)
@@ -132,4 +146,27 @@ func play_jump_sound():
 	walking_sound.stop()
 	walking_sound.stream = JUMP_SOUND
 	walking_sound.play()
+#endregion
+
+#region Weapons
+
+func set_current_weapon(index: int) -> void:
+	if _collected_weapons.is_empty():
+		return
+	
+	if _current_weapon: _current_weapon.switch_out()
+	
+	_current_weapon_index = index % _collected_weapons.size()
+	
+	if _current_weapon_index < 0:
+		_current_weapon_index = _collected_weapons.size() - 1
+		
+	_current_weapon = _collected_weapons[_current_weapon_index]
+	_current_weapon.switch_in()
+	
+func switch_weapon(switch_direction: int) -> void:
+	if _collected_weapons.is_empty():
+		return
+	set_current_weapon(_current_weapon_index + switch_direction)
+	
 #endregion

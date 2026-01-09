@@ -20,6 +20,9 @@ signal hit(damage_taken: int)
 var _current_health: int = 0
 var _dead: bool = false
 
+func get_dead() -> bool:
+	return _dead
+
 
 func get_health() -> int:
 	return _current_health
@@ -52,4 +55,3 @@ func take_hit(dmg: int) -> void:
 func give_bonus(b: int) -> void:
 	_current_health += b
 	_current_health = min(_current_health, _current_health, max_health)
-

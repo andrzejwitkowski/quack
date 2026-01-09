@@ -11,3 +11,5 @@ script = ExtResource("1_vafft")
 [node name="FireSound" type="AudioStreamPlayer3D" parent="."]
 
 [node name="MuzzleFlash" parent="." instance=ExtResource("2_nait1")]
+
+[node name="ActivateSound" type="AudioStreamPlayer3D" parent="."]

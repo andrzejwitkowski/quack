@@ -31,6 +31,7 @@ func blow_up() -> void:
 
 func _on_area_entered(area: Area3D) -> void:
 	blow_up()
+	if area is HitBox: area.take_hit(_damage)
 
 
 func _on_body_entered(body: Node3D) -> void:

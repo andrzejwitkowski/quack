@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpdujmncut8lj"]
+
+[ext_resource type="PackedScene" uid="uid://cwptpjsaldb32" path="res://Scenes/Utils/HitBox/HitBox.tscn" id="1_82vmg"]
+[ext_resource type="Script" uid="uid://7aylwv06aocx" path="res://Scenes/TestBunny/TestBunny.gd" id="1_uc7p6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mosbd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sw2t2"]
+
+[node name="TestBunny" type="Node3D"]
+script = ExtResource("1_uc7p6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_mosbd")
+
+[node name="HitBox" parent="." instance=ExtResource("1_82vmg")]
+collision_layer = 64
+shape_resource = SubResource("CapsuleShape3D_sw2t2")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4093367, 0)
+billboard = 1
+text = "#@#@$@#$@$"
+font_size = 64
+
+[connection signal="died" from="HitBox" to="." method="_on_hit_box_died"]
+[connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]

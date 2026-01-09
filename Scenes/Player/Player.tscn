@@ -69,6 +69,7 @@ visible = false
 
 [node name="RocketLauncher" parent="Camera3D/GunHolder" instance=ExtResource("9_ji083")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.237, -0.237)
+visible = false
 
 [node name="NailGun" parent="Camera3D/GunHolder" instance=ExtResource("10_0kmp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.282, -0.282)

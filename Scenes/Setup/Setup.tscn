@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://de8gyhklyse2l"]
+[gd_scene load_steps=17 format=3 uid="uid://de8gyhklyse2l"]
 
 [ext_resource type="Texture2D" uid="uid://faff1yhahtjk" path="res://Assets/Textures/PrototypeTextures/dark.png" id="1_lsk1p"]
 [ext_resource type="Script" uid="uid://b45mdyfi01ulu" path="res://Scenes/Setup/Setup.gd" id="1_mosbd"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b5ffpqm7j6bft" path="res://Scenes/Player/Player.tscn" id="3_0ccqp"]
 [ext_resource type="PackedScene" uid="uid://dn4dq4s0cep0x" path="res://Scenes/Utils/ScreenShot/ScreenShot.tscn" id="4_sw2t2"]
 [ext_resource type="PackedScene" uid="uid://b5bmyoy4y3f8c" path="res://Scenes/PoolContainer/PoolContainer.tscn" id="6_14hjg"]
+[ext_resource type="PackedScene" uid="uid://bpdujmncut8lj" path="res://Scenes/TestBunny/TestBunny.tscn" id="6_73shc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ccqp"]
 sky_top_color = Color(0.2617225, 0.31775224, 0.39240915, 1)
@@ -45,10 +46,6 @@ size = Vector3(6, 3, 6)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mosbd"]
 points = PackedVector3Array(-3, -1.5, -3, -3, 1.5, -3, 3, -1.5, -3, -3, -1.5, 3, -3, 1.5, 3, 3, 1.5, -3, 3, -1.5, 3, 3, 1.5, 3)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sw2t2"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_mosbd"]
 
 [node name="Setup" type="Node"]
 script = ExtResource("1_mosbd")
@@ -202,16 +199,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8743734, 22.025028)
 
 [node name="ScreenShot" parent="." instance=ExtResource("4_sw2t2")]
 
-[node name="TestBunny" type="Area3D" parent="."]
+[node name="TestBunny" parent="." instance=ExtResource("6_73shc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7124214, 3.5249958, 8.774765)
-collision_layer = 64
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBunny"]
-shape = SubResource("CapsuleShape3D_sw2t2")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TestBunny"]
-mesh = SubResource("CapsuleMesh_mosbd")
 
 [node name="Container" type="Node3D" parent="."]
 
