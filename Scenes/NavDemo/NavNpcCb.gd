@@ -44,6 +44,11 @@ func _physics_process(delta: float) -> void:
 	var npp: Vector3 = nav_agent.get_next_path_position()
 	var new_vel: Vector3 = global_position.direction_to(npp) * speed
 	
-	velocity = new_vel
+	nav_agent.velocity = new_vel
 	
+	move_and_slide()
+
+
+func _on_nav_agent_velocity_computed(safe_velocity: Vector3) -> void:
+	velocity = safe_velocity
 	move_and_slide()

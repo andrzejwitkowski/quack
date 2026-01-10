@@ -2,6 +2,7 @@
 
 [ext_resource type="Material" uid="uid://drsaq1jk5g7ff" path="res://Scenes/NavDemo/FloorMaterial.tres" id="1_n66sn"]
 [ext_resource type="PackedScene" uid="uid://c3hy3s566vnx1" path="res://Scenes/NavDemo/NavNpcCb.tscn" id="2_h006h"]
+[ext_resource type="Script" uid="uid://365q7w0p42xe" path="res://Scenes/NavDemo/Avoid.gd" id="3_xewut"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h006h"]
 sky_top_color = Color(0.121464856, 0.15408683, 0.19754058, 1)
@@ -18,22 +19,19 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h006h"]
-vertices = PackedVector3Array(-6.5, 0.3, -6.5, -6.5, 0.3, 6.5, 6.5, 0.3, 6.5, 6.5, 0.3, -6.5, 8.75, 0.8, -2.5, 8.75, 0.8, 2.5, 13.75, 0.8, 2.5, 13.75, 0.8, -2.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
+vertices = PackedVector3Array(-9.5, 0.3, -9.5, -9.5, 0.3, 9.5, 9.5, 0.3, 9.5, 9.5, 0.3, -9.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_24of4"]
 material = ExtResource("1_n66sn")
-size = Vector3(14, 0.2, 14)
+size = Vector3(20, 0.2, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h006h"]
-size = Vector3(14, 0.2, 14)
+size = Vector3(20, 0.2, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_h006h"]
-material = ExtResource("1_n66sn")
-size = Vector3(6, 0.2, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xewut"]
-size = Vector3(6, 0.2, 6)
+[sub_resource type="SphereMesh" id="SphereMesh_h006h"]
+radius = 1.0
+height = 2.0
 
 [node name="NavDemo" type="Node"]
 
@@ -45,6 +43,7 @@ shadow_enabled = true
 environment = SubResource("Environment_28ibt")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0019659996, 0.017403603, -0.011441231)
 navigation_mesh = SubResource("NavigationMesh_h006h")
 
 [node name="Floor" type="MeshInstance3D" parent="NavigationRegion3D"]
@@ -57,24 +56,18 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_h006h")
 
-[node name="Floor2" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.315652, 0.3278494, 0)
-mesh = SubResource("BoxMesh_h006h")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor2/StaticBody3D"]
-shape = SubResource("BoxShape3D_xewut")
-
-[node name="NavigationLink3D" type="NavigationLink3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5876675, 0, 0)
-start_position = Vector3(2.7661476, 0, 0.09348876)
-end_position = Vector3(-1.8380184, 0, -0.017010024)
-
 [node name="NavNpcCB" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_h006h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73277426, 0.78170824, -3.6504755)
 speed = 3.0
 camera = NodePath("../Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.8049145, -0.3962695, 0.44168225, 0, 0.7443361, 0.6678052, -0.5933908, -0.5375261, 0.59912694, 13.910904, 16.568525, 13.401476)
+transform = Transform3D(0.8386707, 0.40604293, -0.3629885, 0, 0.6664756, 0.74552685, 0.5446389, -0.62525153, 0.5589535, -8.725476, 16.123985, 15.712458)
+
+[node name="Avoid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3796544, 0.36896992, 0)
+mesh = SubResource("SphereMesh_h006h")
+script = ExtResource("3_xewut")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="Avoid"]
+radius = 1.2
