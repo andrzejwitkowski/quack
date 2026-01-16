@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxusutguqg2mt"]
+
+[ext_resource type="Script" uid="uid://cjmagswj071fx" path="res://Scenes/Enemies/FSM/EnemyStateNodeDeath.gd" id="1_twlpj"]
+
+[node name="EnemyStateNodeDeath" type="Node"]
+script = ExtResource("1_twlpj")
+metadata/_custom_type_script = "uid://r5v2awyu00cm"

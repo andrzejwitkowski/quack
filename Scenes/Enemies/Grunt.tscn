@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bmn3vetwerv31"]
+[gd_scene load_steps=23 format=4 uid="uid://bmn3vetwerv31"]
 
 [ext_resource type="PackedScene" uid="uid://jb0by7ua7elu" path="res://Scenes/Enemies/EnemyBase.tscn" id="1_cfekx"]
 [ext_resource type="Texture2D" uid="uid://ccs1yiv5g1x22" path="res://Assets/Models/Monsters/Vanguard/Vanguard_vanguard_diffuse1.png" id="2_lyn02"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cpja21ka783ts" path="res://Assets/Models/Monsters/Vanguard/Vanguard_vanguard_normal.png" id="3_shdww"]
 [ext_resource type="AudioStream" uid="uid://c0m4it3g33v6r" path="res://Assets/Sounds/76971__Grunt_Pain.wav" id="4_g1esn"]
 [ext_resource type="AudioStream" uid="uid://bate0ekelt6vh" path="res://Assets/Sounds/128300__xenonn__layered-gunshot-4.wav" id="5_pskt5"]
+[ext_resource type="PackedScene" uid="uid://xbtuq72c0ki2" path="res://Assets/Models/Guns/heavy_assault_rifle.glb" id="6_g1esn"]
+[ext_resource type="PackedScene" uid="uid://bk5foem4lotbd" path="res://Scenes/Enemies/FSM/EnemyStateNodeShoot.tscn" id="6_hrtf3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y3yn8"]
 
@@ -1502,6 +1504,7 @@ tracks/57/keys = PackedFloat32Array(0, 1, 0.3770829, -0.04907842, -0.031735912, 
 [sub_resource type="Animation" id="Animation_1revv"]
 resource_name = "Shoot"
 length = 0.21666667
+step = 0.03
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -2740,19 +2743,25 @@ _data = {
 &"Walking": SubResource("Animation_o3k86")
 }
 
-[node name="Grunt" instance=ExtResource("1_cfekx")]
+[node name="Grunt" node_paths=PackedStringArray("visuals") instance=ExtResource("1_cfekx")]
 walk_speed_scale = 1.0
 death_sound = ExtResource("2_y3yn8")
 grunt_sound = ExtResource("3_hrtf3")
 pain_sound = ExtResource("4_g1esn")
 shoot_sound = ExtResource("5_pskt5")
+visuals = NodePath("Armature")
 
-[node name="HitBox" parent="." index="1"]
+[node name="EnemyStateNodeWalking" parent="NodeStateMachine" index="1"]
+to_shoot_or_throw = NodePath("../EnemyStateNodeShoot")
+
+[node name="EnemyStateNodeShoot" parent="NodeStateMachine" index="4" instance=ExtResource("6_hrtf3")]
+to_walk = NodePath("../EnemyStateNodeWalking")
+debounce = 0.16
+
+[node name="HitBox" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9281049, 0)
+start_health = 100
 shape_resource = SubResource("CapsuleShape3D_y3yn8")
-
-[node name="AnimationTree" parent="." index="9"]
-anim_player = NodePath("../AnimationPlayer2")
 
 [node name="Armature" type="Node3D" parent="." index="10"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -3229,7 +3238,18 @@ skin = SubResource("Skin_8vo3k")
 mesh = SubResource("ArrayMesh_t4rfi")
 skin = SubResource("Skin_8vo3k")
 
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
+transform = Transform3D(-6.1316996e-09, -0.9999995, 2.2351752e-07, 6.6678183e-09, -1.9371505e-07, -0.99999964, 0.9999994, -9.856521e-09, 4.632362e-09, -0.68026507, 1.47923, -0.057597127)
+bone_name = "RightHand"
+bone_idx = 35
+
+[node name="Sketchfab_Scene" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("6_g1esn")]
+transform = Transform3D(0.3071465, 0.9304223, 0.1999404, 0.24537602, 0.12556528, -0.96126217, -0.91948485, 0.3443087, -0.18973632, -0.01, -0.017, -0.001)
+
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="11"]
 libraries = {
 &"": SubResource("AnimationLibrary_ojhqp")
 }
+
+[node name="AnimationTree" parent="." index="12"]
+anim_player = NodePath("../AnimationPlayer2")

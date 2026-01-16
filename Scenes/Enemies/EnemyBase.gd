@@ -14,6 +14,8 @@ const MELEE_SPEED_SCALE_PARAM: String = "parameters/Attack/Melee/Speed/scale"
 const SHOOT_SPEED_SCALE_PARAM: String = "parameters/Attack/Shoot/Speed/scale"
 const THROW_SPEED_SCALE_PARAM: String = "parameters/Attack/Throw/Speed/scale"
 
+const _734629__VRYMAA__BODY_FALL_HEAVY_DANGEROUS = preload("uid://c1qatno7p44rq")
+
 
 @export_group("Movement")
 @export var speed: float = 2.2
@@ -41,6 +43,8 @@ const THROW_SPEED_SCALE_PARAM: String = "parameters/Attack/Throw/Speed/scale"
 @export var pain_sound: AudioStream
 @export var shoot_sound: AudioStream
 
+@export_group("Misc")
+@export var visuals: Node3D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var tree_sm: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
@@ -52,7 +56,7 @@ const THROW_SPEED_SCALE_PARAM: String = "parameters/Attack/Throw/Speed/scale"
 @onready var player_ref: PlayerRef = $PlayerRef
 @onready var grunt_timer: Timer = $GruntTimer
 @onready var label: Label = $CanvasLayer/Label
-
+@onready var throw_point: Marker3D = $ThrowPoint
 @onready var state_machine: NodeStateMachine = $NodeStateMachine
 
 
@@ -104,7 +108,11 @@ func play_effect(s: AudioStream) -> void:
 
 func play_death_sound() -> void:
 	play_effect(death_sound)
+	sound_effects.finished.connect(death_sound_done)
 
+func death_sound_done() ->  void:
+	sound_effects.stream = _734629__VRYMAA__BODY_FALL_HEAVY_DANGEROUS
+	sound_effects.play()
 
 func play_grunt_sound() -> void:
 	play_effect(grunt_sound)
@@ -116,7 +124,22 @@ func play_pain_sound() -> void:
 
 func play_shoot_sound() -> void:
 	play_effect(shoot_sound)
+	
+func throw_at_player() -> void:
+	if player_detected():
+		if fire_behaviour and fire_behaviour is ThrowableFire:
+			fire_behaviour.fire(self, throw_point.global_transform)
+	
+func shoot_at_player() -> void:
+	if player_detected():
+		play_shoot_sound()
+		SignalHub.emit_on_player_shot(shoot_damage, shoot_accuracy)
 
+func disable_all() -> void:
+	set_physics_process(false)
+	for c in get_children():
+		if c == visuals: continue
+		remove_child(c)
 
 func _on_hit_box_died() -> void:
 	print("died")

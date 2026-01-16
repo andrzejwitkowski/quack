@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk5foem4lotbd"]
+
+[ext_resource type="Script" uid="uid://bf864wukovm58" path="res://Scenes/Enemies/FSM/EnemyStateNodeShoot.gd" id="1_l4h4v"]
+
+[node name="EnemyStateNodeShoot" type="Node"]
+script = ExtResource("1_l4h4v")
+to_walk = null
+debounce = null

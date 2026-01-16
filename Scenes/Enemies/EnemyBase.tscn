@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://jb0by7ua7elu"]
+[gd_scene load_steps=50 format=3 uid="uid://jb0by7ua7elu"]
 
 [ext_resource type="PackedScene" uid="uid://cwptpjsaldb32" path="res://Scenes/Utils/HitBox/HitBox.tscn" id="1_iiq2q"]
 [ext_resource type="Script" uid="uid://b8p2jj5dihy2q" path="res://Scenes/Enemies/EnemyBase.gd" id="1_srcxp"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cwfbqt2mblya0" path="res://Scenes/Enemies/FSM/NodeStateMachine.tscn" id="4_2a3kf"]
 [ext_resource type="PackedScene" uid="uid://bwpejtduo1box" path="res://Scenes/Enemies/FSM/EnemyStateNodeWalking.tscn" id="4_aahyb"]
 [ext_resource type="PackedScene" uid="uid://ctah33b0tx10c" path="res://Scenes/Enemies/FSM/EnemyStateNodeHurt.tscn" id="5_tgb06"]
+[ext_resource type="PackedScene" uid="uid://bxusutguqg2mt" path="res://Scenes/Enemies/FSM/EnemyStateNodeDeath.tscn" id="6_fj512"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_srcxp"]
 radius = 0.3
@@ -182,9 +183,10 @@ collision_layer = 32
 collision_mask = 3
 script = ExtResource("1_srcxp")
 
-[node name="NodeStateMachine" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("4_2a3kf")]
+[node name="NodeStateMachine" parent="." node_paths=PackedStringArray("enemy", "_death_state") instance=ExtResource("4_2a3kf")]
 enemy = NodePath("..")
 initial_state_path = NodePath("EnemyStateNodeIdle")
+_death_state = NodePath("EnemyStateNodeDeath")
 
 [node name="EnemyStateNodeIdle" parent="NodeStateMachine" instance=ExtResource("3_m1s7c")]
 to_walking = NodePath("../EnemyStateNodeWalking")
@@ -195,6 +197,8 @@ to_hurt = NodePath("../EnemyStateNodeHurt")
 
 [node name="EnemyStateNodeHurt" parent="NodeStateMachine" instance=ExtResource("5_tgb06")]
 to_idle = NodePath("../EnemyStateNodeIdle")
+
+[node name="EnemyStateNodeDeath" parent="NodeStateMachine" instance=ExtResource("6_fj512")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87697506, 0)
@@ -250,6 +254,8 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 32
 text = "niunun"
 horizontal_alignment = 2
+
+[node name="ThrowPoint" type="Marker3D" parent="."]
 
 [connection signal="died" from="HitBox" to="." method="_on_hit_box_died"]
 [connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgwv1jc7xim44"]
+
+[ext_resource type="Script" uid="uid://dn2sibgfl0pkv" path="res://Scenes/Enemies/FSM/EnemyStateNodeThrow.gd" id="1_dn8ko"]
+
+[node name="EnemyStateNodeThrow" type="Node"]
+script = ExtResource("1_dn8ko")
+metadata/_custom_type_script = "uid://bcp6hhbnr4cux"

@@ -4,10 +4,12 @@ class_name NodeStateMachine
 
 @export var enemy: EnemyBase
 @export var initial_state_path: NodePath
+@export var _death_state: EnemyStateNode
 
 
 var _states: Dictionary[String, EnemyStateNode] = {}
 var _current: EnemyStateNode
+var _locked: bool = false
 
 func _ready() -> void:
 	register_child_states()
@@ -20,13 +22,14 @@ func late_setup() -> void:
 func connect_signals() -> void:
 	enemy.enemy_hit.connect(on_enemy_hit)
 	enemy.animation_tree.animation_finished.connect(animation_finished)
+	enemy.enemy_died.connect(enemy_died)
 
 func register_child_states() -> void:
 	_states.clear()
 	for child in get_children():
 		if child is EnemyStateNode:
-			#if child is EnemyStateNodeDeath:
-				#_death_state = child
+			if child is EnemyStateNodeDeath:
+				_death_state = child
 			child.set_machine(self)
 			_states[child.name] = child
 			print("register_child_states(): ", child.name)
@@ -43,10 +46,18 @@ func start_initial_state() -> void:
 		push_error("initial state is empty")
 		
 func change_to_state(next: EnemyStateNode) -> void:
-	if _current == next: return
-	if _current: _current.exit_state()
+	if _current == next: 
+		print("current is also next")
+		return
+	if _locked: 
+		print("is locked")
+		return
+	if _current: 
+		print("exit state")
+		_current.exit_state()
 	_current = next
 	_current.enter_state()
+	if _current == _death_state: _locked = true
 	
 func on_enemy_hit(accumulated_hit: int) -> void:
 	if _current: _current.enemy_hit(accumulated_hit)
@@ -56,3 +67,6 @@ func update(delta: float) -> void:
 	
 func animation_finished(anim_name: String) -> void:
 	if _current: _current.animation_finished(anim_name)
+
+func enemy_died() -> void:
+	if _death_state: change_to_state(_death_state)
