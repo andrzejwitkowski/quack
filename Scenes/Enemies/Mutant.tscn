@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://b6a1jgfy887n8"]
+[gd_scene load_steps=26 format=4 uid="uid://b6a1jgfy887n8"]
 
 [ext_resource type="PackedScene" uid="uid://jb0by7ua7elu" path="res://Scenes/Enemies/EnemyBase.tscn" id="1_cvga8"]
 [ext_resource type="AudioStream" uid="uid://d1yg1akafguny" path="res://Assets/Sounds/76961_Mutant_Death.wav" id="2_gtdqd"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ryjiletsa2h2" path="res://Assets/Models/Monsters/Mutant/Mutant_Mutant_normal.png" id="3_ywqan"]
 [ext_resource type="AudioStream" uid="uid://dan4tvxoymds4" path="res://Assets/Sounds/76965_Mutant_Pain.wav" id="4_ox4mx"]
 [ext_resource type="PackedScene" uid="uid://dgwv1jc7xim44" path="res://Scenes/Enemies/FSM/EnemyStateNodeThrow.tscn" id="6_lne0e"]
+[ext_resource type="PackedScene" uid="uid://sqdhjfwjnx3u" path="res://Scenes/Enemies/FSM/EnemyStateNodeMelee.tscn" id="8_y21nk"]
 
 [sub_resource type="Resource" id="Resource_l83n4"]
 script = ExtResource("2_y21nk")
@@ -166,6 +167,9 @@ bind/36/pose = Transform3D(-1, -1.6085544e-06, -6.574815e-14, -7.382005e-11, -2.
 bind/37/name = &"RightToe_End"
 bind/37/bone = -1
 bind/37/pose = Transform3D(-1, -1.6085544e-06, 4.9903478e-14, -7.370636e-11, -2.85808e-08, 0.9999995, -1.60856e-06, 1, -3.1023816e-08, -0.13656001, -0.35312295, -2.4094463e-06)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ox4mx"]
+height = 1.1434082
 
 [sub_resource type="Animation" id="Animation_y00fo"]
 resource_name = "Death"
@@ -2014,10 +2018,14 @@ visuals = NodePath("Armature_007")
 
 [node name="EnemyStateNodeWalking" parent="NodeStateMachine" index="1"]
 to_shoot_or_throw = NodePath("../EnemyStateNodeThrow")
+to_melee = NodePath("../EnemyStateNodeMelee")
 
 [node name="EnemyStateNodeThrow" parent="NodeStateMachine" index="4" instance=ExtResource("6_lne0e")]
 to_walk = NodePath("../EnemyStateNodeWalking")
 debounce = 0.6
+
+[node name="EnemyStateNodeMelee" parent="NodeStateMachine" index="5" instance=ExtResource("8_y21nk")]
+to_walk = NodePath("../EnemyStateNodeWalking")
 
 [node name="HitBox" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86863023, 0)
@@ -2298,13 +2306,29 @@ bones/37/scale = Vector3(1, 1, 1)
 mesh = SubResource("ArrayMesh_fadjb")
 skin = SubResource("Skin_1t6fa")
 
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_007/Skeleton3D" index="1"]
+transform = Transform3D(-0.055236008, -0.9984732, 1.1011958e-05, 1.869339e-07, -1.0974705e-05, -1.0000001, 0.9984731, -0.055236008, 8.046627e-07, -0.27406, 1.4749991, -0.010439612)
+bone_name = "RightArm"
+bone_idx = 13
+
+[node name="MeleeHit" type="Area3D" parent="Armature_007/Skeleton3D/BoneAttachment3D" index="0"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_007/Skeleton3D/BoneAttachment3D/MeleeHit" index="0"]
+transform = Transform3D(1.0000055, 5.364418e-07, -2.3841858e-07, -1.937151e-07, 1.0000006, 5.9604645e-08, -2.0861626e-07, -2.2351742e-07, 1.0000002, -2.0861626e-07, 0.2505529, -0.17857242)
+shape = SubResource("CapsuleShape3D_ox4mx")
+
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="11"]
 libraries = {
 &"": SubResource("AnimationLibrary_4ibuq")
 }
 
 [node name="AnimationTree" parent="." index="12"]
+callback_mode_process = 0
 anim_player = NodePath("../AnimationPlayer2")
 
 [node name="ThrowPoint" parent="." index="14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19262218, 2.0462065, -0.40127242)
+
+[connection signal="area_entered" from="Armature_007/Skeleton3D/BoneAttachment3D/MeleeHit" to="." method="_on_melee_hit_area_entered"]

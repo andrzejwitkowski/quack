@@ -6,6 +6,7 @@ class_name EnemyStateNodeWalking
 @export var to_idle: NodePath
 @export var to_hurt: NodePath
 @export var to_shoot_or_throw: NodePath
+@export var to_melee: NodePath
 @export var hit_threashold: float = 10
 
 
@@ -21,6 +22,11 @@ func enter_state() -> void:
 func update_state(delta: float) -> void:
 	_elapsed_time += delta
 	if _enemy.player_detected(): _enemy.set_target_to_player()
+	
+	if to_melee:
+		if _elapsed_time > _enemy.melee_interval and _enemy.can_melee():
+			transition_to_path(to_melee)
+			return
 	
 	if to_shoot_or_throw:
 		if _elapsed_time > _enemy.shoot_interval:

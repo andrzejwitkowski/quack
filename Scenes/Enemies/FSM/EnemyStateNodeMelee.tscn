@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://sqdhjfwjnx3u"]
+
+[ext_resource type="Script" uid="uid://d22xxghbuq5xm" path="res://Scenes/Enemies/FSM/EnemyStateNodeMelee.gd" id="1_i2hfw"]
+
+[node name="EnemyStateNodeMelee" type="Node"]
+script = ExtResource("1_i2hfw")
+metadata/_custom_type_script = "uid://bcp6hhbnr4cux"

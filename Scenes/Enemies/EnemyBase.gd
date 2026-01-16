@@ -35,6 +35,7 @@ const _734629__VRYMAA__BODY_FALL_HEAVY_DANGEROUS = preload("uid://c1qatno7p44rq"
 @export var shoot_damage: int = 5
 @export var melee_damage: int = 20
 @export var melee_distance: float = 1.5
+@export var melee_interval: float = 0.5
 
 
 @export_group("Sounds")
@@ -73,6 +74,10 @@ func _ready() -> void:
 	animation_tree[MELEE_SPEED_SCALE_PARAM] = melee_speed_scale
 	animation_tree[SHOOT_SPEED_SCALE_PARAM] = shoot_speed_scale
 	animation_tree[HURT_SPEED_SCALE_PARAM] = hurt_speed_scale
+
+func can_melee() -> bool:
+	return player_detected() and\
+		player_ref.player_less_than_distance(global_position, melee_distance)
 
 func player_detected() -> bool:
 	return player_detect.is_colliding() and player_detect.get_collider() is Player
@@ -159,3 +164,6 @@ func _on_grunt_timer_timeout() -> void:
 	if !sound_effects.playing:
 		play_grunt_sound()
 		GameUtils.randomize_timer(grunt_timer, 3.0)
+		
+func _on_melee_hit_area_entered(area: Area3D) -> void:
+	if area is HitBox: area.take_hit(melee_damage)
