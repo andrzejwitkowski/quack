@@ -2625,7 +2625,8 @@ _data = {
 }
 
 [node name="Zombie" node_paths=PackedStringArray("visuals", "melee_area") instance=ExtResource("1_k6tf2")]
-speed = 0.3
+speed = 0.8
+walk_speed_scale = 2.0
 death_sound = ExtResource("2_i253e")
 grunt_sound = ExtResource("3_aieyy")
 pain_sound = ExtResource("4_rxpp2")
