@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://xfjeupwyxwfr"]
+[gd_scene load_steps=26 format=4 uid="uid://xfjeupwyxwfr"]
 
 [ext_resource type="PackedScene" uid="uid://jb0by7ua7elu" path="res://Scenes/Enemies/EnemyBase.tscn" id="1_k6tf2"]
 [ext_resource type="Texture2D" uid="uid://b0xgkinc2yqjm" path="res://Assets/Models/Monsters/Zombie/Zombie_zombie_body_diffuse.png" id="2_epfg0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cgsumplequu3x" path="res://Assets/Models/Monsters/Zombie/Zombie_zombie_diffuse.png" id="4_k2x5o"]
 [ext_resource type="AudioStream" uid="uid://dluduc5aln4oc" path="res://Assets/Sounds/316264__Zombie_Pain.wav" id="4_rxpp2"]
 [ext_resource type="AudioStream" uid="uid://bate0ekelt6vh" path="res://Assets/Sounds/128300__xenonn__layered-gunshot-4.wav" id="5_brmjd"]
+[ext_resource type="PackedScene" uid="uid://sqdhjfwjnx3u" path="res://Scenes/Enemies/FSM/EnemyStateNodeMelee.tscn" id="6_aieyy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i253e"]
 
@@ -356,6 +357,10 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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")
 }]
 blend_shape_mode = 0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aieyy"]
+radius = 0.2619629
+height = 0.5239258
 
 [sub_resource type="Animation" id="Animation_ojowq"]
 resource_name = "Death"
@@ -2619,18 +2624,22 @@ _data = {
 &"Walking": SubResource("Animation_h6jul")
 }
 
-[node name="Zombie" instance=ExtResource("1_k6tf2")]
+[node name="Zombie" node_paths=PackedStringArray("visuals") instance=ExtResource("1_k6tf2")]
 death_sound = ExtResource("2_i253e")
 grunt_sound = ExtResource("3_aieyy")
 pain_sound = ExtResource("4_rxpp2")
 shoot_sound = ExtResource("5_brmjd")
+visuals = NodePath("Armature")
 
-[node name="HitBox" parent="." index="1"]
+[node name="EnemyStateNodeWalking" parent="NodeStateMachine" index="1"]
+to_melee = NodePath("../EnemyStateNodeMelee")
+
+[node name="EnemyStateNodeMelee" parent="NodeStateMachine" index="4" instance=ExtResource("6_aieyy")]
+to_walk = NodePath("../EnemyStateNodeWalking")
+
+[node name="HitBox" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape_resource = SubResource("CapsuleShape3D_i253e")
-
-[node name="AnimationTree" parent="." index="9"]
-anim_player = NodePath("../AnimationPlayer2")
 
 [node name="Armature" type="Node3D" parent="." index="10"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -3097,7 +3106,21 @@ skin = SubResource("Skin_54d71")
 mesh = SubResource("ArrayMesh_oo71x")
 skin = SubResource("Skin_54d71")
 
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="3"]
+transform = Transform3D(0.017452398, -0.9998477, 9.861318e-07, 1.3494515e-07, -9.541195e-07, -1, 0.99984777, 0.01745243, 1.009782e-07, -0.737488, 1.57545, -0.051854562)
+bone_name = "RightHand"
+bone_idx = 37
+
+[node name="MeleeHit" type="Area3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/MeleeHit" index="0"]
+transform = Transform3D(1.0000043, -2.3515895e-08, 7.0780516e-08, 1.1881348e-06, 1, -1.0430813e-07, -3.9860606e-07, 0, 1.0000137, 2.3841858e-07, 0.14473104, -7.450581e-09)
+shape = SubResource("CapsuleShape3D_aieyy")
+
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="11"]
 libraries = {
 &"": SubResource("AnimationLibrary_fwo3b")
 }
+
+[node name="AnimationTree" parent="." index="12"]
+anim_player = NodePath("../AnimationPlayer2")
