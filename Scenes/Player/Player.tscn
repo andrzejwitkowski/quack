@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b5ffpqm7j6bft"]
+[gd_scene load_steps=19 format=3 uid="uid://b5ffpqm7j6bft"]
 
 [ext_resource type="Script" uid="uid://b4c8ggnxsft6i" path="res://Scenes/Player/Player.gd" id="1_ft8w5"]
 [ext_resource type="AudioStream" uid="uid://bv0sbfn8iiyqi" path="res://Assets/Sounds/concrete-footsteps-6752.wav" id="2_4wape"]
@@ -26,6 +26,9 @@ streams_count = 2
 stream_0/stream = ExtResource("6_t26db")
 stream_1/stream = ExtResource("6_t26db")
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i5acl"]
+height = 1.6
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t26db"]
 albedo_color = Color(0.9019608, 0.21176471, 0.30588236, 1)
 
@@ -49,8 +52,9 @@ stream = SubResource("AudioStreamRandomizer_fk5o5")
 stream = SubResource("AudioStreamRandomizer_825xp")
 
 [node name="HitBox" parent="." instance=ExtResource("13_epg6k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.054563105, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.245, 0)
 collision_layer = 16
+shape_resource = SubResource("CapsuleShape3D_i5acl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

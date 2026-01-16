@@ -1,0 +1,36 @@
+extends EnemyStateNode
+
+
+class_name EnemyStateNodeWalking
+
+@export var to_idle: NodePath
+@export var to_hurt: NodePath
+
+@export var hit_threashold: float = 10
+
+
+func enter_state() -> void:
+	print("entered_state():", name)
+	_enemy.tree_sm.travel("Walking")
+	_enemy.play_grunt_sound()
+	_enemy.grunt_timer.start()
+	_enemy.set_target_to_player()
+
+
+func update_state(delta: float) -> void:
+	if _enemy.player_detected(): _enemy.set_target_to_player()
+	
+	if _enemy.nav_agent.is_navigation_finished() and !_enemy.player_detected():
+		transition_to_path(to_idle)
+	elif _enemy.can_nav():
+		var npp: Vector3 = _enemy.nav_agent.get_next_path_position()
+		_enemy.velocity = _enemy.global_position.direction_to(npp) * _enemy.speed
+		
+	
+func enemy_hit(accumulated_hit: int) -> void:
+	if _enemy.accumulated_damage >= hit_threashold:
+		transition_to_path(to_hurt)
+
+func exit_state() -> void:
+	print("exit_state():", name)
+	_enemy.grunt_timer.stop()

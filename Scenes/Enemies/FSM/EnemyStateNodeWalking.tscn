@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwpejtduo1box"]
+
+[ext_resource type="Script" uid="uid://d3da4lfywvs2j" path="res://Scenes/Enemies/FSM/EnemyStateNodeWalking.gd" id="1_gsdb8"]
+
+[node name="EnemyStateNodeWalking" type="Node"]
+script = ExtResource("1_gsdb8")
+metadata/_custom_type_script = "uid://r5v2awyu00cm"

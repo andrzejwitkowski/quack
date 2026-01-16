@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctah33b0tx10c"]
+
+[ext_resource type="Script" uid="uid://boj6ccynw6kfw" path="res://Scenes/Enemies/FSM/EnemyStateNodeHurt.gd" id="1_svfeu"]
+
+[node name="EnemyStateNodeHurt" type="Node"]
+script = ExtResource("1_svfeu")
+metadata/_custom_type_script = "uid://r5v2awyu00cm"

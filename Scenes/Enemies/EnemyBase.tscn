@@ -1,8 +1,12 @@
-[gd_scene load_steps=45 format=3 uid="uid://jb0by7ua7elu"]
+[gd_scene load_steps=49 format=3 uid="uid://jb0by7ua7elu"]
 
 [ext_resource type="PackedScene" uid="uid://cwptpjsaldb32" path="res://Scenes/Utils/HitBox/HitBox.tscn" id="1_iiq2q"]
 [ext_resource type="Script" uid="uid://b8p2jj5dihy2q" path="res://Scenes/Enemies/EnemyBase.gd" id="1_srcxp"]
 [ext_resource type="PackedScene" uid="uid://dyw2pkoa1fmpb" path="res://Scenes/Utils/PlayerRef/PlayerRef.tscn" id="2_p6c21"]
+[ext_resource type="PackedScene" uid="uid://c1mwut1wmtca2" path="res://Scenes/Enemies/FSM/EnemyStateNodeIdle.tscn" id="3_m1s7c"]
+[ext_resource type="PackedScene" uid="uid://cwfbqt2mblya0" path="res://Scenes/Enemies/FSM/NodeStateMachine.tscn" id="4_2a3kf"]
+[ext_resource type="PackedScene" uid="uid://bwpejtduo1box" path="res://Scenes/Enemies/FSM/EnemyStateNodeWalking.tscn" id="4_aahyb"]
+[ext_resource type="PackedScene" uid="uid://ctah33b0tx10c" path="res://Scenes/Enemies/FSM/EnemyStateNodeHurt.tscn" id="5_tgb06"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_srcxp"]
 radius = 0.3
@@ -177,6 +181,20 @@ graph_offset = Vector2(5, -78)
 collision_layer = 32
 collision_mask = 3
 script = ExtResource("1_srcxp")
+
+[node name="NodeStateMachine" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("4_2a3kf")]
+enemy = NodePath("..")
+initial_state_path = NodePath("EnemyStateNodeIdle")
+
+[node name="EnemyStateNodeIdle" parent="NodeStateMachine" instance=ExtResource("3_m1s7c")]
+to_walking = NodePath("../EnemyStateNodeWalking")
+
+[node name="EnemyStateNodeWalking" parent="NodeStateMachine" instance=ExtResource("4_aahyb")]
+to_idle = NodePath("../EnemyStateNodeIdle")
+to_hurt = NodePath("../EnemyStateNodeHurt")
+
+[node name="EnemyStateNodeHurt" parent="NodeStateMachine" instance=ExtResource("5_tgb06")]
+to_idle = NodePath("../EnemyStateNodeIdle")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87697506, 0)

@@ -13,6 +13,9 @@ enum PoolObjectNames {
 
 static func ValidPoolObject(n: PoolObjectNames): return n != PoolObjectNames.None
 
+static func randomize_timer(t: Timer, base_time: float) -> void:
+	t.wait_time = max(0.1, base_time * randf_range(0.7, 1.3))
+
 
 static func vanish_rigidbody(rb: RigidBody3D) -> void:
 	rb.collision_layer = 0

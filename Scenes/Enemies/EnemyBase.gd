@@ -23,6 +23,7 @@ const THROW_SPEED_SCALE_PARAM: String = "parameters/Attack/Throw/Speed/scale"
 @export var melee_speed_scale: float = 1.5
 @export var hurt_speed_scale: float = 1.0
 @export var path_offset: float = 0.5
+@export var nav_minimum_dist: float = 0.5
 
 
 @export_group("Shooting")
@@ -52,6 +53,8 @@ const THROW_SPEED_SCALE_PARAM: String = "parameters/Attack/Throw/Speed/scale"
 @onready var grunt_timer: Timer = $GruntTimer
 @onready var label: Label = $CanvasLayer/Label
 
+@onready var state_machine: NodeStateMachine = $NodeStateMachine
+
 
 var accumulated_damage: int = 0:
 	set(v):
@@ -60,8 +63,7 @@ var accumulated_damage: int = 0:
 
 func _ready() -> void:		
 	nav_agent.path_height_offset = path_offset
-	
-	tree_sm.travel("Idle")
+	GameUtils.randomize_timer(grunt_timer, 3.0)
 	animation_tree[WALKING_SPEED_SCALE_PARAM] = walk_speed_scale
 	animation_tree[THROW_SPEED_SCALE_PARAM] = throw_speed_scale
 	animation_tree[MELEE_SPEED_SCALE_PARAM] = melee_speed_scale
@@ -70,6 +72,12 @@ func _ready() -> void:
 
 func player_detected() -> bool:
 	return player_detect.is_colliding() and player_detect.get_collider() is Player
+	
+func set_target_to_player() -> void:
+	nav_agent.target_position = player_ref.player_pos
+	
+func can_nav() -> bool:
+	return !player_ref.player_less_than_distance(global_position, nav_minimum_dist)
 
 func safe_look_at(target: Vector3) -> void:
 	target.y = global_position.y
@@ -79,6 +87,7 @@ func safe_look_at(target: Vector3) -> void:
 
 func _physics_process(_delta: float) -> void:
 	player_detect.look_at(player_ref.player_pos)
+	state_machine.update(_delta)
 	move_and_slide()
 	if player_detected(): safe_look_at(player_ref.player_pos)
 	
@@ -86,7 +95,6 @@ func _physics_process(_delta: float) -> void:
 	s += "health:%d" % hit_box.get_health()
 	label.text = s
 	
-
 
 func play_effect(s: AudioStream) -> void:
 	sound_effects.stop()
@@ -125,4 +133,6 @@ func _on_accumulated_damage_timer_timeout() -> void:
 
 
 func _on_grunt_timer_timeout() -> void:
-	play_grunt_sound()
+	if !sound_effects.playing:
+		play_grunt_sound()
+		GameUtils.randomize_timer(grunt_timer, 3.0)
