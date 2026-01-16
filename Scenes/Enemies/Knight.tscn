@@ -3207,12 +3207,13 @@ _data = {
 &"Walking": SubResource("Animation_scbmi")
 }
 
-[node name="Knight" node_paths=PackedStringArray("visuals") instance=ExtResource("1_d28wy")]
+[node name="Knight" node_paths=PackedStringArray("visuals", "melee_area") instance=ExtResource("1_d28wy")]
 death_sound = ExtResource("2_52p6j")
 grunt_sound = ExtResource("3_8dbnn")
 pain_sound = ExtResource("4_u7dwb")
 shoot_sound = ExtResource("5_axwyl")
 visuals = NodePath("Armature_005")
+melee_area = NodePath("Armature_005/Skeleton3D/BoneAttachment3D/MeleeHit")
 
 [node name="EnemyStateNodeWalking" parent="NodeStateMachine" index="1"]
 to_melee = NodePath("../EnemyStateNodeMelee")
@@ -3722,6 +3723,8 @@ bone_idx = 37
 transform = Transform3D(-0.9999713, 1.168571e-07, 0.007609606, -0.007609561, -2.235172e-07, -0.9999713, -1.3005405e-07, -1.0000001, 2.3222776e-07, 0.7936157, 0.058573313, 0.020879643)
 
 [node name="MeleeHit" type="Area3D" parent="Armature_005/Skeleton3D/BoneAttachment3D" index="1"]
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature_005/Skeleton3D/BoneAttachment3D/MeleeHit" index="0"]
 transform = Transform3D(8.940697e-07, -1, -2.9802322e-07, 0.9999982, 2.9802322e-08, -4.917383e-07, -5.066395e-07, 1.4901161e-08, 0.9999989, 0.92736804, 0.032401323, 1.1920929e-07)

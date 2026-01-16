@@ -46,6 +46,7 @@ const _734629__VRYMAA__BODY_FALL_HEAVY_DANGEROUS = preload("uid://c1qatno7p44rq"
 
 @export_group("Misc")
 @export var visuals: Node3D
+@export var melee_area: Node3D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var tree_sm: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
@@ -145,6 +146,7 @@ func disable_all() -> void:
 	for c in get_children():
 		if c == visuals: continue
 		remove_child(c)
+	if melee_area: melee_area.queue_free()
 
 func _on_hit_box_died() -> void:
 	print("died")

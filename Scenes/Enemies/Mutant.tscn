@@ -2009,12 +2009,13 @@ _data = {
 &"Walking": SubResource("Animation_b2dns")
 }
 
-[node name="Mutant" node_paths=PackedStringArray("visuals") instance=ExtResource("1_cvga8")]
+[node name="Mutant" node_paths=PackedStringArray("visuals", "melee_area") instance=ExtResource("1_cvga8")]
 fire_behaviour = SubResource("Resource_l83n4")
 death_sound = ExtResource("2_gtdqd")
 grunt_sound = ExtResource("3_lne0e")
 pain_sound = ExtResource("4_ox4mx")
 visuals = NodePath("Armature_007")
+melee_area = NodePath("Armature_007/Skeleton3D/BoneAttachment3D/MeleeHit")
 
 [node name="EnemyStateNodeWalking" parent="NodeStateMachine" index="1"]
 to_shoot_or_throw = NodePath("../EnemyStateNodeThrow")

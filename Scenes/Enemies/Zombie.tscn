@@ -2624,12 +2624,14 @@ _data = {
 &"Walking": SubResource("Animation_h6jul")
 }
 
-[node name="Zombie" node_paths=PackedStringArray("visuals") instance=ExtResource("1_k6tf2")]
+[node name="Zombie" node_paths=PackedStringArray("visuals", "melee_area") instance=ExtResource("1_k6tf2")]
+speed = 0.3
 death_sound = ExtResource("2_i253e")
 grunt_sound = ExtResource("3_aieyy")
 pain_sound = ExtResource("4_rxpp2")
 shoot_sound = ExtResource("5_brmjd")
 visuals = NodePath("Armature")
+melee_area = NodePath("Armature/Skeleton3D/BoneAttachment3D/MeleeHit")
 
 [node name="EnemyStateNodeWalking" parent="NodeStateMachine" index="1"]
 to_melee = NodePath("../EnemyStateNodeMelee")
@@ -2639,6 +2641,7 @@ to_walk = NodePath("../EnemyStateNodeWalking")
 
 [node name="HitBox" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 128
 shape_resource = SubResource("CapsuleShape3D_i253e")
 
 [node name="Armature" type="Node3D" parent="." index="10"]
@@ -3112,6 +3115,8 @@ bone_name = "RightHand"
 bone_idx = 37
 
 [node name="MeleeHit" type="Area3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/MeleeHit" index="0"]
 transform = Transform3D(1.0000043, -2.3515895e-08, 7.0780516e-08, 1.1881348e-06, 1, -1.0430813e-07, -3.9860606e-07, 0, 1.0000137, 2.3841858e-07, 0.14473104, -7.450581e-09)
