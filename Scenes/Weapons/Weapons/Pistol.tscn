@@ -128,6 +128,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f7am5")
 
 [node name="Pistol" instance=ExtResource("1_p0qcc")]
+weapon_type = 1
 fire_bahavior = SubResource("Resource_rs8u3")
 fire_rate_ms = 300.0
 

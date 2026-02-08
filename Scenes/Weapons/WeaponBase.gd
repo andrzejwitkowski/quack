@@ -48,6 +48,7 @@ func fire() -> void:
 	fire_bahavior.fire(self, muzzle.global_transform)
 	muzzle_flash.restart()
 	_current_ammo -= 1
+	SignalHub.emit_on_ammo_updated(weapon_type, _current_ammo)
 
 
 func switch_in() -> void:
@@ -62,6 +63,7 @@ func switch_in() -> void:
 	await get_tree().create_timer(SWAP_TIME, false).timeout
 	rotation_degrees = Vector3.ZERO
 	_swapping = false
+	SignalHub.emit_on_ammo_updated(weapon_type, _current_ammo)
 	
 func switch_out() -> void:
 	hide()

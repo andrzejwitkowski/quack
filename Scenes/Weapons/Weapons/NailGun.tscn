@@ -131,6 +131,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4qlwv")
 
 [node name="NailGun" instance=ExtResource("1_gutyp")]
+weapon_type = 3
 fire_bahavior = SubResource("Resource_vbubv")
 fire_rate_ms = 100.0
 

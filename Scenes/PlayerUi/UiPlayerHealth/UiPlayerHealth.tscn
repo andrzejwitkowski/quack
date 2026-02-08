@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://drfr2x4nskyoa"]
+
+[ext_resource type="Script" uid="uid://03fnx57sgh65" path="res://Scenes/PlayerUi/UiPlayerHealth/UiPlayerHealth.gd" id="1_fvxsl"]
+[ext_resource type="Texture2D" uid="uid://dnqxan1okctdp" path="res://Assets/Images/QuakeGuy/QuakeGuy64Face.png" id="1_tb2fr"]
+
+[node name="UIPlayerHealth" type="VBoxContainer" unique_id=732891750]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+script = ExtResource("1_fvxsl")
+
+[node name="Image" type="TextureRect" parent="." unique_id=1183419169]
+layout_mode = 2
+texture = ExtResource("1_tb2fr")
+stretch_mode = 4
+
+[node name="HealthLabel" type="Label" parent="." unique_id=1055036738]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1

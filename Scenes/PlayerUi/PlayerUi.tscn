@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3gq82o34gqbo"]
+[gd_scene format=3 uid="uid://d3gq82o34gqbo"]
 
 [ext_resource type="Texture2D" uid="uid://c5420qjprcxae" path="res://Assets/Images/Crosshair.png" id="1_1md71"]
 [ext_resource type="Script" uid="uid://cloodiregihh3" path="res://Scenes/PlayerUi/PlayerUi.gd" id="1_bvlqs"]
 [ext_resource type="Texture2D" uid="uid://bed4mpd0g3bty" path="res://Assets/Textures/Dot.png" id="2_fg5ye"]
+[ext_resource type="Texture2D" uid="uid://d1a56jogntr44" path="res://Assets/Ui/Panel/panel-000.png" id="4_e1yk5"]
+[ext_resource type="PackedScene" uid="uid://drfr2x4nskyoa" path="res://Scenes/PlayerUi/UiPlayerHealth/UiPlayerHealth.tscn" id="5_e7isr"]
+[ext_resource type="PackedScene" uid="uid://8j4hssk1mslu" path="res://Scenes/PlayerUi/UiAmmoStatus/UiAmmoStatus.tscn" id="6_wxmpr"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fg5ye"]
 particle_flag_disable_z = true
@@ -13,7 +16,7 @@ scale_min = 0.02
 scale_max = 0.04
 color = Color(3.1229057, 0.46505314, 0.59499264, 1)
 
-[node name="PlayerUi" type="Control"]
+[node name="PlayerUi" type="Control" unique_id=162796368]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +26,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_bvlqs")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2125877409]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,7 +43,7 @@ texture = ExtResource("1_1md71")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=79633726]
 emitting = false
 amount = 16
 texture = ExtResource("2_fg5ye")
@@ -48,3 +51,53 @@ lifetime = 0.2
 one_shot = true
 explosiveness = 0.76
 process_material = SubResource("ParticleProcessMaterial_fg5ye")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=906583579]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -443.0
+offset_top = -182.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer" unique_id=787023310]
+self_modulate = Color(0.15127608, 0.15127608, 0.15127608, 1)
+layout_mode = 2
+texture = ExtResource("4_e1yk5")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1426126172]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="UIPlayerHealth" parent="MarginContainer/HBoxContainer" unique_id=732891750 instance=ExtResource("5_e7isr")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer" unique_id=547013908]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="UiAmmoStatus" parent="MarginContainer/HBoxContainer" unique_id=776789506 instance=ExtResource("6_wxmpr")]
+layout_mode = 2
+
+[node name="UiAmmoStatus2" parent="MarginContainer/HBoxContainer" unique_id=469782631 instance=ExtResource("6_wxmpr")]
+layout_mode = 2
+weapon_type = 2
+
+[node name="UiAmmoStatus3" parent="MarginContainer/HBoxContainer" unique_id=253840954 instance=ExtResource("6_wxmpr")]
+layout_mode = 2
+weapon_type = 0
+
+[node name="UiAmmoStatus4" parent="MarginContainer/HBoxContainer" unique_id=1582257702 instance=ExtResource("6_wxmpr")]
+layout_mode = 2
+weapon_type = 3

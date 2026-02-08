@@ -132,6 +132,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_r5mrc")
 
 [node name="GrenadeLuncher" instance=ExtResource("1_0rhos")]
+weapon_type = 0
 fire_bahavior = SubResource("Resource_f4no0")
 fire_rate_ms = 400.0
 
