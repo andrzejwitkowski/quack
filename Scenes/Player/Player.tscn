@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b5ffpqm7j6bft"]
+[gd_scene format=3 uid="uid://b5ffpqm7j6bft"]
 
 [ext_resource type="Script" uid="uid://b4c8ggnxsft6i" path="res://Scenes/Player/Player.gd" id="1_ft8w5"]
 [ext_resource type="AudioStream" uid="uid://bv0sbfn8iiyqi" path="res://Assets/Sounds/concrete-footsteps-6752.wav" id="2_4wape"]
@@ -34,55 +34,58 @@ albedo_color = Color(0.9019608, 0.21176471, 0.30588236, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_t26db"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" unique_id=1411689041]
 collision_layer = 2
 collision_mask = 33
 script = ExtResource("1_ft8w5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1418444307]
 shape = SubResource("CapsuleShape3D_t26db")
 
-[node name="WalkingSound" type="AudioStreamPlayer3D" parent="."]
+[node name="WalkingSound" type="AudioStreamPlayer3D" parent="." unique_id=1259392905]
 stream = ExtResource("2_4wape")
 
-[node name="LandingSound" type="AudioStreamPlayer3D" parent="."]
+[node name="LandingSound" type="AudioStreamPlayer3D" parent="." unique_id=1457319702]
 stream = SubResource("AudioStreamRandomizer_fk5o5")
 
-[node name="Pains" type="AudioStreamPlayer3D" parent="."]
+[node name="Pains" type="AudioStreamPlayer3D" parent="." unique_id=1285489461]
 stream = SubResource("AudioStreamRandomizer_825xp")
 
-[node name="HitBox" parent="." instance=ExtResource("13_epg6k")]
+[node name="HitBox" parent="." unique_id=802000328 instance=ExtResource("13_epg6k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.245, 0)
 collision_layer = 16
 shape_resource = SubResource("CapsuleShape3D_i5acl")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1141559425]
 visible = false
 material_override = SubResource("StandardMaterial3D_t26db")
 mesh = SubResource("CapsuleMesh_t26db")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=720651823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6531465, 0)
 current = true
 
-[node name="GunHolder" type="Node3D" parent="Camera3D"]
+[node name="GunHolder" type="Node3D" parent="Camera3D" unique_id=1444950610]
 
-[node name="Pistol" parent="Camera3D/GunHolder" instance=ExtResource("8_fk5o5")]
+[node name="Pistol" parent="Camera3D/GunHolder" unique_id=1859516497 instance=ExtResource("8_fk5o5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.282, -0.288)
 visible = false
 
-[node name="RocketLauncher" parent="Camera3D/GunHolder" instance=ExtResource("9_ji083")]
+[node name="RocketLauncher" parent="Camera3D/GunHolder" unique_id=524989407 instance=ExtResource("9_ji083")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.237, -0.237)
 visible = false
 
-[node name="NailGun" parent="Camera3D/GunHolder" instance=ExtResource("10_0kmp4")]
+[node name="NailGun" parent="Camera3D/GunHolder" unique_id=1062622736 instance=ExtResource("10_0kmp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.282, -0.282)
 visible = false
 
-[node name="GrenadeLuncher" parent="Camera3D/GunHolder" instance=ExtResource("11_i5acl")]
+[node name="GrenadeLuncher" parent="Camera3D/GunHolder" unique_id=1629485370 instance=ExtResource("11_i5acl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.366542, -0.26014495)
 visible = false
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1766362552]
 
-[node name="PlayerUi" parent="UI" instance=ExtResource("9_825xp")]
+[node name="PlayerUi" parent="UI" unique_id=873450928 instance=ExtResource("9_825xp")]
+
+[connection signal="died" from="HitBox" to="." method="_on_hit_box_died"]
+[connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]

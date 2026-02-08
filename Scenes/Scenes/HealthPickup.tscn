@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bwd1gek12hfli"]
+
+[ext_resource type="Texture2D" uid="uid://b2m77v55u1bvk" path="res://Assets/Textures/Health.png" id="1_bp5vj"]
+[ext_resource type="Shader" uid="uid://cjd2t2cth26al" path="res://Scenes/Scenes/HealthPickupShader.tres" id="2_soqb2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xlt5s"]
+radius = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_soqb2"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(0.5716471, 2.7075353, 2.7075353, 1)
+albedo_texture = ExtResource("1_bp5vj")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_1rwpy"]
+material = SubResource("StandardMaterial3D_soqb2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1rwpy"]
+render_priority = 0
+shader = ExtResource("2_soqb2")
+shader_parameter/Colour = Color(0, 0.45490196, 0.5372549, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hal0x"]
+
+[node name="HealthPickup" type="Area3D" unique_id=999172992]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=493685027]
+visible = false
+shape = SubResource("SphereShape3D_xlt5s")
+
+[node name="CrossMesh" type="MeshInstance3D" parent="." unique_id=1290269858]
+visible = false
+mesh = SubResource("QuadMesh_1rwpy")
+
+[node name="SkinMesh" type="MeshInstance3D" parent="." unique_id=1770259495]
+material_override = SubResource("ShaderMaterial_1rwpy")
+mesh = SubResource("SphereMesh_hal0x")

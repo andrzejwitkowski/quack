@@ -64,6 +64,7 @@ func _ready() -> void:
 
 func _enter_tree() -> void:
 	add_to_group(GROUP_NAME)
+	SignalHub.on_player_shot.connect(on_player_shot)
 
 #endregion
 
@@ -170,3 +171,20 @@ func switch_weapon(switch_direction: int) -> void:
 	set_current_weapon(_current_weapon_index + switch_direction)
 	
 #endregion
+
+
+func on_player_shot(dmg: int, accuracy: float):
+	if randf() < accuracy:
+		hit_box.take_hit(dmg)
+
+func _on_hit_box_hit(damage_taken: int) -> void:
+	pains.play()
+	SignalHub.emit_on_player_health_changed(hit_box._current_health)
+
+
+func _on_hit_box_died() -> void:
+	pains.stop()
+	pains.stream = _469567__PLAYER_DIE
+	pains.play()
+	set_physics_process(false)
+	
