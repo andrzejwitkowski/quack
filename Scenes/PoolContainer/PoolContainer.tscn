@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5bmyoy4y3f8c"]
+[gd_scene format=3 uid="uid://b5bmyoy4y3f8c"]
 
 [ext_resource type="Script" uid="uid://c5j1yg1eqxkv6" path="res://Scenes/PoolContainer/PoolContainer.gd" id="1_domrk"]
 
-[node name="PoolContainer" type="Node3D"]
+[node name="PoolContainer" type="Node3D" unique_id=1893193404]
 script = ExtResource("1_domrk")
+
+[node name="Sounds" type="AudioStreamPlayer" parent="." unique_id=1088688909]

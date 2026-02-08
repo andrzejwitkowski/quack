@@ -190,6 +190,7 @@ func _on_hit_box_died() -> void:
 	set_physics_process(false)
 	
 func on_player_health_bonus(amount: int) -> void:
+	SignalHub.emit_on_play_sound(GameUtils.SoundType.HealthBoost)
 	hit_box.give_bonus(amount)
 
 func activate_weapon(wt: WeaponBase.WeaponType) -> void:

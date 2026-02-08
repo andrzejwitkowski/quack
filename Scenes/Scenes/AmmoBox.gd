@@ -33,4 +33,5 @@ func _on_body_entered(body: Node3D) -> void:
 			amount
 		])
 		if body.add_to_ammo(ammo_type, amount):
+			SignalHub.emit_on_play_sound(GameUtils.SoundType.AmmoPickUp)
 			queue_free()

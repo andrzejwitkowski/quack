@@ -29,4 +29,5 @@ func _ready() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body is Player:
 		body.activate_weapon(weapon_type)
+		SignalHub.emit_on_play_sound(GameUtils.SoundType.AmmoPickUp)
 		queue_free()
