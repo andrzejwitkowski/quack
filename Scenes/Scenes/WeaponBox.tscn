@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://djqe8siwmwyaj"]
+
+[ext_resource type="Script" uid="uid://5tvrg0unkdur" path="res://Scenes/Scenes/WeaponBox.gd" id="1_o2nxn"]
+[ext_resource type="PackedScene" uid="uid://dc5writb1yd6j" path="res://Assets/Models/Guns/RocketLauncher.glb" id="1_tqecs"]
+[ext_resource type="PackedScene" uid="uid://d4bcn8ho228nq" path="res://Assets/Models/Guns/GrenadeLauncher.glb" id="2_o2nxn"]
+[ext_resource type="PackedScene" uid="uid://6u6n1wcu8quv" path="res://Assets/Models/Guns/NailGun.glb" id="3_w0mwa"]
+[ext_resource type="PackedScene" uid="uid://dqyswlx7b2hnc" path="res://Assets/Models/Guns/Pistol.glb" id="4_3jjpe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o2nxn"]
+size = Vector3(0.6411743, 0.9892578, 1)
+
+[sub_resource type="Animation" id="Animation_tqecs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o2nxn"]
+resource_name = "show"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.2666667, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.3, 0), Vector3(0, 0.6, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.2333333, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.7, 0.7, 0.7), Vector3(0.5, 0.5, 0.5), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w0mwa"]
+_data = {
+&"RESET": SubResource("Animation_tqecs"),
+&"show": SubResource("Animation_o2nxn")
+}
+
+[node name="WeaponBox" type="Area3D" unique_id=1740893430]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_o2nxn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=186403199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025543213, 0.31213975, 0)
+shape = SubResource("BoxShape3D_o2nxn")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=774486607]
+
+[node name="RocketLauncher2" parent="Pivot" unique_id=1997557672 instance=ExtResource("1_tqecs")]
+
+[node name="GrenadeLauncher2" parent="Pivot" unique_id=651175169 instance=ExtResource("2_o2nxn")]
+
+[node name="NailGun2" parent="Pivot" unique_id=1051447023 instance=ExtResource("3_w0mwa")]
+
+[node name="Pistol2" parent="Pivot" unique_id=1948861680 instance=ExtResource("4_3jjpe")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=745779593]
+libraries/ = SubResource("AnimationLibrary_w0mwa")
+autoplay = &"show"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

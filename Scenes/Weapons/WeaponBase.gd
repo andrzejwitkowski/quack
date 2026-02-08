@@ -73,3 +73,8 @@ func play_swap() -> void:
 func play_empty() -> void:
 	activate_sound.stream = _730213__EMPTY_WEAPON
 	activate_sound.play()
+	
+func add_ammo(amount: int):
+	_current_ammo += amount
+	_current_ammo = clampi(_current_ammo, 0, max_ammo)
+	SignalHub.emit_on_ammo_updated(weapon_type, _current_ammo)

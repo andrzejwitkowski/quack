@@ -55,9 +55,9 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	_collected_weapons.append(pistol)
-	_collected_weapons.append(rocket_launcher)
-	_collected_weapons.append(grenade_luncher)
-	_collected_weapons.append(nail_gun)
+	#_collected_weapons.append(rocket_launcher)
+	#_collected_weapons.append(grenade_luncher)
+	#_collected_weapons.append(nail_gun)
 	
 	await get_tree().process_frame
 	set_current_weapon(0)
@@ -65,6 +65,7 @@ func _ready() -> void:
 func _enter_tree() -> void:
 	add_to_group(GROUP_NAME)
 	SignalHub.on_player_shot.connect(on_player_shot)
+	SignalHub.on_player_health_bonus.connect(on_player_health_bonus)
 
 #endregion
 
@@ -188,3 +189,29 @@ func _on_hit_box_died() -> void:
 	pains.play()
 	set_physics_process(false)
 	
+func on_player_health_bonus(amount: int) -> void:
+	hit_box.give_bonus(amount)
+
+func activate_weapon(wt: WeaponBase.WeaponType) -> void:
+	for w in _collected_weapons:
+		if w.weapon_type == wt: return
+		
+	match wt:
+		WeaponBase.WeaponType.Pistol:
+			_collected_weapons.append(pistol)
+		WeaponBase.WeaponType.RocketLauncher:
+			_collected_weapons.append(rocket_launcher)
+		WeaponBase.WeaponType.Grenade:
+			_collected_weapons.append(grenade_luncher)
+		WeaponBase.WeaponType.NailGun:
+			_collected_weapons.append(nail_gun)
+			
+	set_current_weapon(_collected_weapons.size() - 1)
+	
+func add_to_ammo(wt: WeaponBase.WeaponType, amount: int) -> bool:
+	for w in _collected_weapons:
+		if w.weapon_type == wt:
+			print("adding ammo ", amount)
+			w.add_ammo(amount)
+			return true
+	return false

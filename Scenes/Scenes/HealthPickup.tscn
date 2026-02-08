@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bwd1gek12hfli"]
 
 [ext_resource type="Texture2D" uid="uid://b2m77v55u1bvk" path="res://Assets/Textures/Health.png" id="1_bp5vj"]
+[ext_resource type="Script" uid="uid://der6vmc5jf1lm" path="res://Scenes/Scenes/HealthPickup.gd" id="1_hal0x"]
 [ext_resource type="Shader" uid="uid://cjd2t2cth26al" path="res://Scenes/Scenes/HealthPickupShader.tres" id="2_soqb2"]
+[ext_resource type="Texture2D" uid="uid://bed4mpd0g3bty" path="res://Assets/Textures/Dot.png" id="3_1rwpy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xlt5s"]
 radius = 0.8
@@ -10,7 +12,7 @@ radius = 0.8
 transparency = 1
 blend_mode = 1
 shading_mode = 0
-albedo_color = Color(0.5716471, 2.7075353, 2.7075353, 1)
+albedo_color = Color(0.572, 2.708, 2.708, 1)
 albedo_texture = ExtResource("1_bp5vj")
 billboard_mode = 1
 
@@ -24,18 +26,67 @@ shader_parameter/Colour = Color(0, 0.45490196, 0.5372549, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_hal0x"]
 
+[sub_resource type="Curve" id="Curve_1rwpy"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -0.39325845), 0.0, 0.0, 0, 0, Vector2(0.35426012, 0.6404494), 0.0, 0.0, 0, 0, Vector2(0.9910314, 0.32584274), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hal0x"]
+curve = SubResource("Curve_1rwpy")
+
+[sub_resource type="Curve" id="Curve_e82tj"]
+_data = [Vector2(0.04932735, 0), 0.0, 0.0, 0, 0, Vector2(0.2511211, 1), 0.0, 0.0, 0, 0, Vector2(0.7399103, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jb23d"]
+curve = SubResource("Curve_e82tj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1rwpy"]
+emission_shape_scale = Vector3(0.6, 0.6, 0.6)
+emission_shape = 1
+emission_sphere_radius = 1.0
+orbit_velocity_min = 0.050000098
+orbit_velocity_max = 0.1000001
+orbit_velocity_curve = SubResource("CurveTexture_hal0x")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_jb23d")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rwpy"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.572, 2.708, 2.708, 1)
+albedo_texture = ExtResource("3_1rwpy")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_soqb2"]
+material = SubResource("StandardMaterial3D_1rwpy")
+size = Vector2(0.3, 0.3)
+
 [node name="HealthPickup" type="Area3D" unique_id=999172992]
 collision_layer = 0
-collision_mask = 16
+collision_mask = 2
+script = ExtResource("1_hal0x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=493685027]
-visible = false
 shape = SubResource("SphereShape3D_xlt5s")
 
 [node name="CrossMesh" type="MeshInstance3D" parent="." unique_id=1290269858]
-visible = false
 mesh = SubResource("QuadMesh_1rwpy")
 
 [node name="SkinMesh" type="MeshInstance3D" parent="." unique_id=1770259495]
 material_override = SubResource("ShaderMaterial_1rwpy")
 mesh = SubResource("SphereMesh_hal0x")
+
+[node name="Sparks" type="GPUParticles3D" parent="." unique_id=740748505]
+amount = 64
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_1rwpy")
+draw_pass_1 = SubResource("QuadMesh_soqb2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

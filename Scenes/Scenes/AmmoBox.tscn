@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://bieh010noie3k"]
+
+[ext_resource type="Script" uid="uid://bqhodgj0vxe10" path="res://Scenes/Scenes/AmmoBox.gd" id="1_7e4j4"]
+[ext_resource type="PackedScene" uid="uid://bxrwsmwp2bam8" path="res://Assets/Models/Ammo/Rocket.glb" id="1_h82vt"]
+[ext_resource type="PackedScene" uid="uid://bb5gnxhu0fqmu" path="res://Assets/Models/Ammo/Grenade.glb" id="2_7e4j4"]
+[ext_resource type="PackedScene" uid="uid://kk2o2asetal3" path="res://Assets/Models/Ammo/AmmoBox.glb" id="3_xcai4"]
+[ext_resource type="PackedScene" uid="uid://b3fn0u0j3vixp" path="res://Assets/Models/Ammo/Bullet.glb" id="4_leaw5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ogpby"]
+size = Vector3(1.1625977, 1.2276611, 1)
+
+[sub_resource type="Animation" id="Animation_hn5cb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0m7br"]
+resource_name = "show"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.1666666, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.4, 0), Vector3(0, 0.8, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(2, 2, 2), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2q0lb"]
+_data = {
+&"RESET": SubResource("Animation_hn5cb"),
+&"show": SubResource("Animation_0m7br")
+}
+
+[node name="AmmoBox" type="Area3D" unique_id=1814194255]
+script = ExtResource("1_7e4j4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1925227548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08129883, 0.32867432, 0)
+shape = SubResource("BoxShape3D_ogpby")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=377560448]
+
+[node name="Rocket2" parent="Pivot" unique_id=1287930492 instance=ExtResource("1_h82vt")]
+visible = false
+
+[node name="Grenade" parent="Pivot" unique_id=1639350296 instance=ExtResource("2_7e4j4")]
+visible = false
+
+[node name="AmmoBox2" parent="Pivot" unique_id=501846332 instance=ExtResource("3_xcai4")]
+visible = false
+
+[node name="Bullet2" parent="Pivot" unique_id=2131947513 instance=ExtResource("4_leaw5")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=436675407]
+libraries/ = SubResource("AnimationLibrary_2q0lb")
+autoplay = &"show"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://de8gyhklyse2l"]
+[gd_scene format=3 uid="uid://de8gyhklyse2l"]
 
 [ext_resource type="Texture2D" uid="uid://faff1yhahtjk" path="res://Assets/Textures/PrototypeTextures/dark.png" id="1_lsk1p"]
 [ext_resource type="Script" uid="uid://b45mdyfi01ulu" path="res://Scenes/Setup/Setup.gd" id="1_mosbd"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://c42mkhv57q8xl" path="res://Scenes/Enemies/Knight.tscn" id="8_eomkp"]
 [ext_resource type="PackedScene" uid="uid://b6a1jgfy887n8" path="res://Scenes/Enemies/Mutant.tscn" id="8_i751c"]
 [ext_resource type="PackedScene" uid="uid://xfjeupwyxwfr" path="res://Scenes/Enemies/Zombie.tscn" id="10_7tkot"]
+[ext_resource type="PackedScene" uid="uid://bwd1gek12hfli" path="res://Scenes/Scenes/HealthPickup.tscn" id="11_oy1ta"]
+[ext_resource type="PackedScene" uid="uid://djqe8siwmwyaj" path="res://Scenes/Scenes/WeaponBox.tscn" id="12_f4uot"]
+[ext_resource type="PackedScene" uid="uid://bieh010noie3k" path="res://Scenes/Scenes/AmmoBox.tscn" id="13_pvthi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ccqp"]
 sky_top_color = Color(0.2617225, 0.31775224, 0.39240915, 1)
@@ -55,172 +58,205 @@ size = Vector3(6, 3, 6)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mosbd"]
 points = PackedVector3Array(-3, -1.5, -3, -3, 1.5, -3, 3, -1.5, -3, -3, -1.5, 3, -3, 1.5, 3, 3, 1.5, -3, 3, -1.5, 3, 3, 1.5, 3)
 
-[node name="Setup" type="Node"]
+[node name="Setup" type="Node" unique_id=783020575]
 script = ExtResource("1_mosbd")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1908464265]
 environment = SubResource("Environment_mosbd")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1853606041]
 transform = Transform3D(0.4939419, -0.71571285, 0.49373725, 0, 0.56784374, 0.8231363, -0.8694949, -0.40658152, 0.28048182, 0, 0, 0)
 light_energy = 0.6
 shadow_enabled = true
 
-[node name="Scenery" type="NavigationRegion3D" parent="."]
+[node name="Scenery" type="NavigationRegion3D" parent="." unique_id=838052455]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028324127, -0.07101059, -0.04446888)
 navigation_mesh = SubResource("NavigationMesh_73shc")
 
-[node name="Ground" type="MeshInstance3D" parent="Scenery"]
+[node name="Ground" type="MeshInstance3D" parent="Scenery" unique_id=1826557452]
 mesh = SubResource("BoxMesh_0ccqp")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Ground"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Ground" unique_id=1546590848]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Ground/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Ground/StaticBody3D" unique_id=1750960304]
 shape = SubResource("ConvexPolygonShape3D_sw2t2")
 
-[node name="Block" type="MeshInstance3D" parent="Scenery"]
+[node name="Block" type="MeshInstance3D" parent="Scenery" unique_id=235037577]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5433521, 0)
 mesh = SubResource("BoxMesh_sw2t2")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block" unique_id=90349224]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block/StaticBody3D" unique_id=16030601]
 shape = SubResource("ConvexPolygonShape3D_mosbd")
 
-[node name="Block2" type="MeshInstance3D" parent="Scenery"]
+[node name="Block2" type="MeshInstance3D" parent="Scenery" unique_id=991568439]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.904081, 1.5433521, -18.079512)
 mesh = SubResource("BoxMesh_sw2t2")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block2" unique_id=1582437213]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block2/StaticBody3D" unique_id=473098606]
 shape = SubResource("ConvexPolygonShape3D_mosbd")
 
-[node name="Block3" type="MeshInstance3D" parent="Scenery"]
+[node name="Block3" type="MeshInstance3D" parent="Scenery" unique_id=781578722]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.206942, 1.5433521, -30.278793)
 mesh = SubResource("BoxMesh_sw2t2")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block3" unique_id=1680966443]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block3/StaticBody3D" unique_id=275738346]
 shape = SubResource("ConvexPolygonShape3D_mosbd")
 
-[node name="Block4" type="MeshInstance3D" parent="Scenery"]
+[node name="Block4" type="MeshInstance3D" parent="Scenery" unique_id=653386157]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.749533, 1.5433521, 22.467747)
 mesh = SubResource("BoxMesh_sw2t2")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block4" unique_id=894285919]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block4/StaticBody3D" unique_id=1975299533]
 shape = SubResource("ConvexPolygonShape3D_mosbd")
 
-[node name="Block9" type="MeshInstance3D" parent="Scenery"]
+[node name="Block9" type="MeshInstance3D" parent="Scenery" unique_id=564870189]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.749533, 4.3421555, 22.467747)
 mesh = SubResource("BoxMesh_sw2t2")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block9"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block9" unique_id=352997195]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block9/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block9/StaticBody3D" unique_id=1765766244]
 shape = SubResource("ConvexPolygonShape3D_mosbd")
 
-[node name="Block10" type="MeshInstance3D" parent="Scenery"]
+[node name="Block10" type="MeshInstance3D" parent="Scenery" unique_id=412573497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.749533, 7.1580963, 22.467747)
 mesh = SubResource("BoxMesh_sw2t2")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block10"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block10" unique_id=80437565]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block10/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block10/StaticBody3D" unique_id=326450656]
 shape = SubResource("ConvexPolygonShape3D_mosbd")
 
-[node name="Block11" type="MeshInstance3D" parent="Scenery"]
+[node name="Block11" type="MeshInstance3D" parent="Scenery" unique_id=1921954207]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.749533, 10.158096, 22.467747)
 mesh = SubResource("BoxMesh_sw2t2")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block11"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block11" unique_id=404614527]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block11/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block11/StaticBody3D" unique_id=1997652860]
 shape = SubResource("ConvexPolygonShape3D_mosbd")
 
-[node name="Block5" type="MeshInstance3D" parent="Scenery"]
+[node name="Block5" type="MeshInstance3D" parent="Scenery" unique_id=1597608232]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.250467, 1.5433521, 27.467747)
 mesh = SubResource("BoxMesh_sw2t2")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block5"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block5" unique_id=1796143278]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block5/StaticBody3D" unique_id=1014077332]
 shape = SubResource("ConvexPolygonShape3D_mosbd")
 
-[node name="Block6" type="MeshInstance3D" parent="Scenery"]
+[node name="Block6" type="MeshInstance3D" parent="Scenery" unique_id=1642272281]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2504673, 1.5433521, 32.467747)
 mesh = SubResource("BoxMesh_sw2t2")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block6"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block6" unique_id=479245136]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block6/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block6/StaticBody3D" unique_id=103984491]
 shape = SubResource("ConvexPolygonShape3D_mosbd")
 
-[node name="Block7" type="MeshInstance3D" parent="Scenery"]
+[node name="Block7" type="MeshInstance3D" parent="Scenery" unique_id=231522052]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.250467, 1.5433521, 21.467747)
 mesh = SubResource("BoxMesh_sw2t2")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block7"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block7" unique_id=719093424]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block7/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block7/StaticBody3D" unique_id=2019231478]
 shape = SubResource("ConvexPolygonShape3D_mosbd")
 
-[node name="Block8" type="MeshInstance3D" parent="Scenery"]
+[node name="Block8" type="MeshInstance3D" parent="Scenery" unique_id=1709375334]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1.490674, 1)
 mesh = SubResource("BoxMesh_sw2t2")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block8"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Scenery/Block8" unique_id=99463448]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block8/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenery/Block8/StaticBody3D" unique_id=1583352512]
 shape = SubResource("ConvexPolygonShape3D_mosbd")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=290034859]
 transform = Transform3D(0.5962611, -0.53349507, 0.5998798, 0, 0.74724317, 0.6645507, -0.8027906, -0.39624575, 0.44555202, 10.372815, 10.413723, 22.725151)
 
-[node name="Player" parent="." instance=ExtResource("3_0ccqp")]
+[node name="Player" parent="." unique_id=149121604 instance=ExtResource("3_0ccqp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8743734, 22.025028)
 
-[node name="ScreenShot" parent="." instance=ExtResource("4_sw2t2")]
+[node name="ScreenShot" parent="." unique_id=2040019345 instance=ExtResource("4_sw2t2")]
 
-[node name="Container" type="Node3D" parent="."]
+[node name="Container" type="Node3D" parent="." unique_id=1068398615]
 
-[node name="PoolContainer" parent="." instance=ExtResource("6_14hjg")]
+[node name="PoolContainer" parent="." unique_id=1967974042 instance=ExtResource("6_14hjg")]
 
-[node name="Mutant" parent="." instance=ExtResource("8_i751c")]
+[node name="Mutant" parent="." unique_id=1123822284 instance=ExtResource("8_i751c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3517218, 0, 41.78659)
 
-[node name="Knight" parent="." instance=ExtResource("8_eomkp")]
+[node name="Knight" parent="." unique_id=1705216524 instance=ExtResource("8_eomkp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.093437, 0, 21.8481)
 
-[node name="Grunt" parent="." instance=ExtResource("7_73shc")]
+[node name="Grunt" parent="." unique_id=332170729 instance=ExtResource("7_73shc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.417725, -3.8146973e-06, 20.608044)
 
-[node name="Zombie" parent="." instance=ExtResource("10_7tkot")]
+[node name="Zombie" parent="." unique_id=910158326 instance=ExtResource("10_7tkot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5221472, -3.8146973e-06, -9.068577)
+
+[node name="HealthPickup" parent="." unique_id=999172992 instance=ExtResource("11_oy1ta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47813892, 0.8770776, 9.69281)
+
+[node name="WeaponBox" parent="." unique_id=1740893430 instance=ExtResource("12_f4uot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.037939, 0.35847092, 17.661343)
+
+[node name="WeaponBox2" parent="." unique_id=689303963 instance=ExtResource("12_f4uot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89097977, 0.41991806, 15.108973)
+weapon_type = 0
+
+[node name="WeaponBox3" parent="." unique_id=19274204 instance=ExtResource("12_f4uot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9551487, 0.35764718, 15.392881)
+weapon_type = 2
+
+[node name="WeaponBox4" parent="." unique_id=946412819 instance=ExtResource("12_f4uot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6206875, 0.37540793, 17.660261)
+weapon_type = 3
+
+[node name="AmmoBox" parent="." unique_id=1814194255 instance=ExtResource("13_pvthi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 13)
+
+[node name="AmmoBox2" parent="." unique_id=519508462 instance=ExtResource("13_pvthi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 11)
+ammo_type = 0
+
+[node name="AmmoBox3" parent="." unique_id=1075544064 instance=ExtResource("13_pvthi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 10)
+ammo_type = 2
+
+[node name="AmmoBox4" parent="." unique_id=1261718877 instance=ExtResource("13_pvthi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 13)
+ammo_type = 3
