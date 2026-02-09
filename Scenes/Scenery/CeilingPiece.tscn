@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://tirva55lipab"]
+
+[ext_resource type="Texture2D" uid="uid://cekyroiik6o8c" path="res://Assets/Textures/TinyTexturePack/256x256/Plaster/Plaster_07-256x256.png" id="1_pl58k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3atot"]
+cull_mode = 2
+albedo_texture = ExtResource("1_pl58k")
+uv1_scale = Vector3(4, 4, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_hu7m4"]
+material = SubResource("StandardMaterial3D_3atot")
+size = Vector2(4, 4)
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pl58k"]
+custom_solver_bias = 1.0
+size = Vector3(4, 0.1, 4)
+
+[node name="CeilingPiece" type="Node3D" unique_id=1044399490]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=767675399]
+mesh = SubResource("QuadMesh_hu7m4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=337401515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.060492992, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1390809714]
+shape = SubResource("BoxShape3D_pl58k")

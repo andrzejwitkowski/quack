@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c6jvcgcgfwbgt"]
+
+[ext_resource type="Texture2D" uid="uid://kb1f7w7qe8ig" path="res://Assets/Textures/TinyTexturePack/256x256/Metal/Metal_06-256x256.png" id="1_ffbxg"]
+[ext_resource type="ArrayMesh" uid="uid://b7gqixaf1rc5w" path="res://Resources/FrameMesh.tres" id="2_tase3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a3gv3"]
+albedo_texture = ExtResource("1_ffbxg")
+
+[node name="FrameHole" type="Node3D" unique_id=863022070]
+
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="." unique_id=1513162678]
+material_override = SubResource("StandardMaterial3D_a3gv3")
+mesh = ExtResource("2_tase3")

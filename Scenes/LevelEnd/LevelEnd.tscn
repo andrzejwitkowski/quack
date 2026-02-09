@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cloq3psw3c5ug"]
+
+[ext_resource type="Shader" uid="uid://de3rd1suvhr6g" path="res://Scenes/LevelEnd/LevelEnd.tres" id="1_sfv5m"]
+[ext_resource type="Script" uid="uid://drulytdbxsnqx" path="res://Scenes/LevelEnd/LevelEnd.gd" id="1_ymtc0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sc6to"]
+size = Vector3(3.8610992, 5.44368, 0.33773804)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ymtc0"]
+render_priority = 0
+shader = ExtResource("1_sfv5m")
+
+[sub_resource type="QuadMesh" id="QuadMesh_sc6to"]
+material = SubResource("ShaderMaterial_ymtc0")
+size = Vector2(4, 6)
+
+[node name="LevelEnd" type="Node3D" unique_id=1215056383]
+script = ExtResource("1_ymtc0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1735592700]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2018919386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010475159, 0.02633667, -0.021209717)
+shape = SubResource("BoxShape3D_sc6to")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2084391706]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=935323500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07926178, 0.04206848)
+shape = SubResource("BoxShape3D_sc6to")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2055208513]
+mesh = SubResource("QuadMesh_sc6to")
+
+[node name="label" type="Label3D" parent="." unique_id=984374070]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0781488, 0.081211805)
+visible = false
+text = "You need the key!"
+font_size = 64
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bwd1gek12hfli" path="res://Scenes/Scenes/HealthPickup.tscn" id="11_oy1ta"]
 [ext_resource type="PackedScene" uid="uid://djqe8siwmwyaj" path="res://Scenes/Scenes/WeaponBox.tscn" id="12_f4uot"]
 [ext_resource type="PackedScene" uid="uid://bieh010noie3k" path="res://Scenes/Scenes/AmmoBox.tscn" id="13_pvthi"]
+[ext_resource type="PackedScene" uid="uid://b1ai80ubq40cf" path="res://Scenes/Scenes/Rune.tscn" id="14_gkakl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ccqp"]
 sky_top_color = Color(0.2617225, 0.31775224, 0.39240915, 1)
@@ -260,3 +261,6 @@ ammo_type = 2
 [node name="AmmoBox4" parent="." unique_id=1261718877 instance=ExtResource("13_pvthi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 13)
 ammo_type = 3
+
+[node name="Rune" parent="." unique_id=1754489614 instance=ExtResource("14_gkakl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0265932, 1.5680652, 16.038092)

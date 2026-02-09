@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bbr44qrxl4tti"]
+
+[ext_resource type="Texture2D" uid="uid://b55rdm21vkjn3" path="res://Assets/Textures/TinyTexturePack/256x256/Brick/Brick_11-256x256.png" id="1_gym8i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vq8wo"]
+cull_mode = 2
+albedo_texture = ExtResource("1_gym8i")
+uv1_scale = Vector3(4, 6, 3)
+
+[sub_resource type="QuadMesh" id="QuadMesh_dfjn0"]
+material = SubResource("StandardMaterial3D_vq8wo")
+size = Vector2(4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gym8i"]
+size = Vector3(4, 6, 0.1)
+
+[node name="WallPiece" type="Node3D" unique_id=61092897]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1926018065]
+mesh = SubResource("QuadMesh_dfjn0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=230916944]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1466921643]
+shape = SubResource("BoxShape3D_gym8i")

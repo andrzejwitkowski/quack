@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d1pldtee62jrn"]
+
+[ext_resource type="Shader" uid="uid://kjj66n25lmbc" path="res://Scenes/Lava/Lava.tres" id="1_0uv1p"]
+[ext_resource type="Script" uid="uid://dthy0440pcpry" path="res://Scenes/Lava/Lava.gd" id="1_03hmu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_03hmu"]
+render_priority = 0
+shader = ExtResource("1_0uv1p")
+shader_parameter/speed = 0.030000001425
+shader_parameter/Displacement = 0.22000001045
+shader_parameter/Min = 0.0910000043225
+shader_parameter/Max = 0.2450000116375
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_piims"]
+material = SubResource("ShaderMaterial_03hmu")
+subdivide_width = 128
+subdivide_depth = 128
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0uv1p"]
+size = Vector3(2.0548096, 0.15222168, 2.012085)
+
+[node name="Lava" type="Node3D" unique_id=698351734]
+script = ExtResource("1_03hmu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=548406043]
+mesh = SubResource("PlaneMesh_piims")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1922755433]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1494883263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0029907227, 0.08526611, -0.006164551)
+shape = SubResource("BoxShape3D_0uv1p")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

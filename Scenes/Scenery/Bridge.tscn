@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c3hti0imecd2j"]
+
+[ext_resource type="Texture2D" uid="uid://cxv6ugpryejdi" path="res://Assets/Textures/TinyTexturePack/256x256/Plaster/Plaster_01-256x256.png" id="1_kcxuq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ph0s3"]
+albedo_texture = ExtResource("1_kcxuq")
+uv1_scale = Vector3(4, 4, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_up7it"]
+material = SubResource("StandardMaterial3D_ph0s3")
+size = Vector3(4, 0.3, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kcxuq"]
+size = Vector3(4, 0.3, 4)
+
+[node name="BridgePiece" type="Node3D" unique_id=1671270415]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1465050202]
+mesh = SubResource("BoxMesh_up7it")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=972985075]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1399017389]
+shape = SubResource("BoxShape3D_kcxuq")

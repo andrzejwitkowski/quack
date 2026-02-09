@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cfdr3huj2cxvs"]
+
+[ext_resource type="Texture2D" uid="uid://dxqixkr5cl0g3" path="res://Assets/Textures/TinyTexturePack/256x256/Dirt/Dirt_09-256x256.png" id="1_i0l04"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_srgpd"]
+albedo_texture = ExtResource("1_i0l04")
+uv1_scale = Vector3(6, 8, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_j50v3"]
+material = SubResource("StandardMaterial3D_srgpd")
+left_to_right = 0.0
+size = Vector3(8, 6, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i0l04"]
+points = PackedVector3Array(-4, 3, 2, 4, -3, 2, -4, 3, -2, -4, -3, 2, 4, -3, -2, -4, -3, -2)
+
+[node name="Stairs" type="Node3D" unique_id=1323145436]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=442207620]
+mesh = SubResource("PrismMesh_j50v3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1159746821]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=215865319]
+shape = SubResource("ConvexPolygonShape3D_i0l04")

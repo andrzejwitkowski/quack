@@ -187,6 +187,7 @@ func _on_hit_box_died() -> void:
 	pains.stop()
 	pains.stream = _469567__PLAYER_DIE
 	pains.play()
+	walking_sound.stop()
 	set_physics_process(false)
 	
 func on_player_health_bonus(amount: int) -> void:

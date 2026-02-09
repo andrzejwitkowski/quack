@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cdd7uysxqhj1a"]
+
+[ext_resource type="Texture2D" uid="uid://46w3wdsyyx2s" path="res://Assets/Textures/TinyTexturePack/256x256/Plaster/Plaster_11-256x256.png" id="1_w3a47"]
+[ext_resource type="ArrayMesh" uid="uid://b7gqixaf1rc5w" path="res://Resources/FrameMesh.tres" id="2_ig40e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a3gv3"]
+albedo_texture = ExtResource("1_w3a47")
+
+[node name="CeilingHole" type="Node3D" unique_id=863022070]
+
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="." unique_id=1513162678]
+material_override = SubResource("StandardMaterial3D_a3gv3")
+mesh = ExtResource("2_ig40e")

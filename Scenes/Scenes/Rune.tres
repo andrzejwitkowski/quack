@@ -1,0 +1,40 @@
+[gd_resource type="VisualShader" format=3 uid="uid://bl2kcm711dp5r"]
+
+[ext_resource type="Texture2D" uid="uid://b80bc7lg77jbs" path="res://Assets/Textures/Cross.png" id="1_l1vfe"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_ub43v"]
+constant = Color(0.4392157, 1, 1, 1)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_bbpx6"]
+texture = ExtResource("1_l1vfe")
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_l1vfe"]
+
+[sub_resource type="VisualShaderNodeVec2Constant" id="VisualShaderNodeVec2Constant_bbpx6"]
+constant = Vector2(0.3, 0.3)
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_uy1kp"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_6jqmg"]
+input_name = "time"
+
+[resource]
+flags/unshaded = true
+flags/shadows_disabled = true
+nodes/vertex/0/position = Vector2(580, 100)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_ub43v")
+nodes/fragment/2/position = Vector2(-37.875996, 343.34332)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_bbpx6")
+nodes/fragment/3/position = Vector2(-120, 540)
+nodes/fragment/4/node = SubResource("VisualShaderNodeUVFunc_l1vfe")
+nodes/fragment/4/position = Vector2(-400, 340)
+nodes/fragment/5/node = SubResource("VisualShaderNodeVec2Constant_bbpx6")
+nodes/fragment/5/position = Vector2(-660, 840)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVectorOp_uy1kp")
+nodes/fragment/6/position = Vector2(-380, 680)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_6jqmg")
+nodes/fragment/7/position = Vector2(-700, 600)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 1, 4, 0, 3, 0, 5, 0, 6, 1, 7, 0, 6, 0, 6, 0, 4, 2)

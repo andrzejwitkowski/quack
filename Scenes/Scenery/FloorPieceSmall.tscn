@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cuotx1ucb1gqj"]
+
+[ext_resource type="Texture2D" uid="uid://dxqixkr5cl0g3" path="res://Assets/Textures/TinyTexturePack/256x256/Dirt/Dirt_09-256x256.png" id="1_qt3y7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ht3pb"]
+cull_mode = 2
+albedo_texture = ExtResource("1_qt3y7")
+uv1_scale = Vector3(4, 4, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_n6ko5"]
+material = SubResource("StandardMaterial3D_ht3pb")
+size = Vector2(2, 2)
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_03loe"]
+size = Vector3(2, 0.1, 2)
+
+[node name="FloorPiece" type="Node3D" unique_id=502215925]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1663364504]
+mesh = SubResource("QuadMesh_n6ko5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1842237549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.031075895, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=94567399]
+shape = SubResource("BoxShape3D_03loe")
