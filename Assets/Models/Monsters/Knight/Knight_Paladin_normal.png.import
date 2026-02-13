@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c840rcav5dtkt"
 path.s3tc="res://.godot/imported/Knight_Paladin_normal.png-c3ba18e2e4c58b35ff21145645d8dc51.s3tc.ctex"
+path.etc2="res://.godot/imported/Knight_Paladin_normal.png-c3ba18e2e4c58b35ff21145645d8dc51.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Models/Monsters/Knight/Knight_Paladin_normal.png"
-dest_files=["res://.godot/imported/Knight_Paladin_normal.png-c3ba18e2e4c58b35ff21145645d8dc51.s3tc.ctex"]
+dest_files=["res://.godot/imported/Knight_Paladin_normal.png-c3ba18e2e4c58b35ff21145645d8dc51.s3tc.ctex", "res://.godot/imported/Knight_Paladin_normal.png-c3ba18e2e4c58b35ff21145645d8dc51.etc2.ctex"]
 
 [params]
 

@@ -15,9 +15,11 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="QuackLite"
-run/main_scene="uid://de8gyhklyse2l"
+run/main_scene="uid://7waw7urftoyt"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/image="uid://copsjnbsmk04h"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=3000
 
 [autoload]
 
@@ -100,3 +102,7 @@ stats={
 3d_physics/layer_6="enemy_physics"
 3d_physics/layer_7="enemy_hit"
 3d_physics/layer_8="zombie_hit"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

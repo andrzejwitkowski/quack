@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0xgkinc2yqjm"
 path.s3tc="res://.godot/imported/Zombie_zombie_body_diffuse.png-6a97ae14085246bbcba0e2d40781c397.s3tc.ctex"
+path.etc2="res://.godot/imported/Zombie_zombie_body_diffuse.png-6a97ae14085246bbcba0e2d40781c397.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Models/Monsters/Zombie/Zombie_zombie_body_diffuse.png"
-dest_files=["res://.godot/imported/Zombie_zombie_body_diffuse.png-6a97ae14085246bbcba0e2d40781c397.s3tc.ctex"]
+dest_files=["res://.godot/imported/Zombie_zombie_body_diffuse.png-6a97ae14085246bbcba0e2d40781c397.s3tc.ctex", "res://.godot/imported/Zombie_zombie_body_diffuse.png-6a97ae14085246bbcba0e2d40781c397.etc2.ctex"]
 
 [params]
 

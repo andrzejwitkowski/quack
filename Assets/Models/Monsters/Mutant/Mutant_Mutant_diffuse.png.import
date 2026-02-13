@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0mmo01io84h5"
 path.s3tc="res://.godot/imported/Mutant_Mutant_diffuse.png-cee5ffb6e582eab40352d0cd48e7ca18.s3tc.ctex"
+path.etc2="res://.godot/imported/Mutant_Mutant_diffuse.png-cee5ffb6e582eab40352d0cd48e7ca18.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Models/Monsters/Mutant/Mutant_Mutant_diffuse.png"
-dest_files=["res://.godot/imported/Mutant_Mutant_diffuse.png-cee5ffb6e582eab40352d0cd48e7ca18.s3tc.ctex"]
+dest_files=["res://.godot/imported/Mutant_Mutant_diffuse.png-cee5ffb6e582eab40352d0cd48e7ca18.s3tc.ctex", "res://.godot/imported/Mutant_Mutant_diffuse.png-cee5ffb6e582eab40352d0cd48e7ca18.etc2.ctex"]
 
 [params]
 

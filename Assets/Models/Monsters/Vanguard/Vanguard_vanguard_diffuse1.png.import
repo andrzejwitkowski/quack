@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccs1yiv5g1x22"
 path.s3tc="res://.godot/imported/Vanguard_vanguard_diffuse1.png-df025dab4e8c6f54904015919b2b7875.s3tc.ctex"
+path.etc2="res://.godot/imported/Vanguard_vanguard_diffuse1.png-df025dab4e8c6f54904015919b2b7875.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Models/Monsters/Vanguard/Vanguard_vanguard_diffuse1.png"
-dest_files=["res://.godot/imported/Vanguard_vanguard_diffuse1.png-df025dab4e8c6f54904015919b2b7875.s3tc.ctex"]
+dest_files=["res://.godot/imported/Vanguard_vanguard_diffuse1.png-df025dab4e8c6f54904015919b2b7875.s3tc.ctex", "res://.godot/imported/Vanguard_vanguard_diffuse1.png-df025dab4e8c6f54904015919b2b7875.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://1nefg0kvvi4n"
 path.s3tc="res://.godot/imported/DungeonPackRemastered_dungeon_texture.png-96a986a3c3be091cba5e0aedaaff7bac.s3tc.ctex"
+path.etc2="res://.godot/imported/DungeonPackRemastered_dungeon_texture.png-96a986a3c3be091cba5e0aedaaff7bac.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Models/DungeonPack/DungeonPackRemastered_dungeon_texture.png"
-dest_files=["res://.godot/imported/DungeonPackRemastered_dungeon_texture.png-96a986a3c3be091cba5e0aedaaff7bac.s3tc.ctex"]
+dest_files=["res://.godot/imported/DungeonPackRemastered_dungeon_texture.png-96a986a3c3be091cba5e0aedaaff7bac.s3tc.ctex", "res://.godot/imported/DungeonPackRemastered_dungeon_texture.png-96a986a3c3be091cba5e0aedaaff7bac.etc2.ctex"]
 
 [params]
 

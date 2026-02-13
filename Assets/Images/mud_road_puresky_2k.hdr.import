@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://deoyb4vslbl7i"
 path.bptc="res://.godot/imported/mud_road_puresky_2k.hdr-799c94ddaa1cf1c29567487b43dba1e0.bptc.ctex"
+path.astc="res://.godot/imported/mud_road_puresky_2k.hdr-799c94ddaa1cf1c29567487b43dba1e0.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Images/mud_road_puresky_2k.hdr"
-dest_files=["res://.godot/imported/mud_road_puresky_2k.hdr-799c94ddaa1cf1c29567487b43dba1e0.bptc.ctex"]
+dest_files=["res://.godot/imported/mud_road_puresky_2k.hdr-799c94ddaa1cf1c29567487b43dba1e0.bptc.ctex", "res://.godot/imported/mud_road_puresky_2k.hdr-799c94ddaa1cf1c29567487b43dba1e0.astc.ctex"]
 
 [params]
 

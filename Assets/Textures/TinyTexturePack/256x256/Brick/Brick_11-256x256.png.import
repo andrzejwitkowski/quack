@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b55rdm21vkjn3"
 path.s3tc="res://.godot/imported/Brick_11-256x256.png-015f62ed0599dddcb39766cd2ad051ab.s3tc.ctex"
+path.etc2="res://.godot/imported/Brick_11-256x256.png-015f62ed0599dddcb39766cd2ad051ab.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/TinyTexturePack/256x256/Brick/Brick_11-256x256.png"
-dest_files=["res://.godot/imported/Brick_11-256x256.png-015f62ed0599dddcb39766cd2ad051ab.s3tc.ctex"]
+dest_files=["res://.godot/imported/Brick_11-256x256.png-015f62ed0599dddcb39766cd2ad051ab.s3tc.ctex", "res://.godot/imported/Brick_11-256x256.png-015f62ed0599dddcb39766cd2ad051ab.etc2.ctex"]
 
 [params]
 

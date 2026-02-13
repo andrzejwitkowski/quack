@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bka8j57j7gabl"
 path.s3tc="res://.godot/imported/medieval_sword_1.png-0b77bbf36be399f7e0321dfd35b3d93c.s3tc.ctex"
+path.etc2="res://.godot/imported/medieval_sword_1.png-0b77bbf36be399f7e0321dfd35b3d93c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Models/Guns/medieval_sword_1.png"
-dest_files=["res://.godot/imported/medieval_sword_1.png-0b77bbf36be399f7e0321dfd35b3d93c.s3tc.ctex"]
+dest_files=["res://.godot/imported/medieval_sword_1.png-0b77bbf36be399f7e0321dfd35b3d93c.s3tc.ctex", "res://.godot/imported/medieval_sword_1.png-0b77bbf36be399f7e0321dfd35b3d93c.etc2.ctex"]
 
 [params]
 

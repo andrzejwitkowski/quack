@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://hki1e8xyfdev"
 path.s3tc="res://.godot/imported/LavaNoise.png-886275d4c53c569a29931aebfc9c52e1.s3tc.ctex"
+path.etc2="res://.godot/imported/LavaNoise.png-886275d4c53c569a29931aebfc9c52e1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/LavaNoise.png"
-dest_files=["res://.godot/imported/LavaNoise.png-886275d4c53c569a29931aebfc9c52e1.s3tc.ctex"]
+dest_files=["res://.godot/imported/LavaNoise.png-886275d4c53c569a29931aebfc9c52e1.s3tc.ctex", "res://.godot/imported/LavaNoise.png-886275d4c53c569a29931aebfc9c52e1.etc2.ctex"]
 
 [params]
 
