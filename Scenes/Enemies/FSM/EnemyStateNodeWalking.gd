@@ -40,6 +40,7 @@ func update_state(delta: float) -> void:
 		print("walking")
 		var npp: Vector3 = _enemy.nav_agent.get_next_path_position()
 		_enemy.velocity = _enemy.global_position.direction_to(npp) * _enemy.speed
+		_enemy.safe_look_at(npp)
 		
 	
 func enemy_hit(accumulated_hit: int) -> void:

@@ -17,6 +17,7 @@ points = PackedVector3Array(-4, 3, 2, 4, -3, 2, -4, 3, -2, -4, -3, 2, 4, -3, -2,
 [node name="Stairs" type="Node3D" unique_id=1323145436]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=442207620]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 mesh = SubResource("PrismMesh_j50v3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1159746821]

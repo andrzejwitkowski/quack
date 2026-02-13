@@ -61,6 +61,8 @@ const _734629__VRYMAA__BODY_FALL_HEAVY_DANGEROUS = preload("uid://c1qatno7p44rq"
 @onready var throw_point: Marker3D = $ThrowPoint
 @onready var state_machine: NodeStateMachine = $NodeStateMachine
 
+func turn_to_player() -> void:
+	if player_detected(): safe_look_at(player_ref.player_pos)
 
 var accumulated_damage: int = 0:
 	set(v):
@@ -99,7 +101,7 @@ func _physics_process(_delta: float) -> void:
 	player_detect.look_at(player_ref.player_pos)
 	state_machine.update(_delta)
 	move_and_slide()
-	if player_detected(): safe_look_at(player_ref.player_pos)
+	# if player_detected(): safe_look_at(player_ref.player_pos)
 	
 	var s = "player detected:%s\n" % player_detected()
 	s += "health:%d" % hit_box.get_health()

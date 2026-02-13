@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b5ofe8ffsr5gn"]
+
+[ext_resource type="Script" uid="uid://bou74s4ci6334" path="res://Scenes/Lift/Lift.gd" id="1_6lhml"]
+[ext_resource type="Texture2D" uid="uid://sgsmmx4tihjx" path="res://Assets/Textures/TinyTexturePack/256x256/Metal/Metal_07-256x256.png" id="1_yfc0t"]
+[ext_resource type="AudioStream" uid="uid://c2unsl13cmtrc" path="res://Assets/Sounds/368737__Lift.wav" id="2_pjg44"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjg44"]
+albedo_texture = ExtResource("1_yfc0t")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_coyts"]
+material = SubResource("StandardMaterial3D_pjg44")
+size = Vector3(3.4, 0.5, 2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6lhml"]
+points = PackedVector3Array(-1.7, -0.25, -1, -1.7, 0.25, -1, 1.7, -0.25, -1, -1.7, -0.25, 1, -1.7, 0.25, 1, 1.7, 0.25, -1, 1.7, -0.25, 1, 1.7, 0.25, 1)
+
+[node name="Lift" type="AnimatableBody3D" unique_id=806269371]
+script = ExtResource("1_6lhml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=248931846]
+mesh = SubResource("BoxMesh_coyts")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=475301033]
+shape = SubResource("ConvexPolygonShape3D_6lhml")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="." unique_id=1014088616]
+stream = ExtResource("2_pjg44")

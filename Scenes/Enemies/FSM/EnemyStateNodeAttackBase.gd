@@ -10,9 +10,10 @@ var _did_action: bool = false
 func enter_state() -> void:
 	_elapsed_time = 0.0
 	_did_action = false
+	_enemy.turn_to_player()
 	_enemy.tree_sm.travel("Attack")
 	_enter_attack_animation()
-	print("entered, ", name)
+	
 
 func update_state(delta: float) -> void:
 	_enemy.velocity = Vector3.ZERO

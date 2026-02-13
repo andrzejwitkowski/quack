@@ -17,9 +17,11 @@ size = Vector3(4, 6, 0.1)
 [node name="WallPiece" type="Node3D" unique_id=61092897]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1926018065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 mesh = SubResource("QuadMesh_dfjn0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=230916944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1466921643]
 shape = SubResource("BoxShape3D_gym8i")

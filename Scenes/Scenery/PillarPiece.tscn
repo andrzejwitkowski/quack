@@ -16,9 +16,11 @@ size = Vector3(1, 6, 1)
 [node name="PillarPiece" type="Node3D" unique_id=767852203]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1532975445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 mesh = SubResource("BoxMesh_ni4ni")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=509087891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1312509630]
 shape = SubResource("BoxShape3D_cdcyk")

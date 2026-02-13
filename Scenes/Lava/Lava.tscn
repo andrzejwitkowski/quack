@@ -13,6 +13,7 @@ shader_parameter/Max = 0.2450000116375
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_piims"]
 material = SubResource("ShaderMaterial_03hmu")
+size = Vector2(4, 4)
 subdivide_width = 128
 subdivide_depth = 128
 
